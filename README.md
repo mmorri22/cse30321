@@ -4,9 +4,9 @@
 
 ### Professor:
 
-|Name|Email|Office Location|Office Hours|
+|Name|Email|Office Location|Office|
 |:---|:---|:---|:---|
-|Prof. Matthew Morrison|matt.morrison@nd.edu|178 Fitzpatrick Hall|M-W 1-2pm, Th 1-3pm|
+|Prof. Matthew Morrison|matt.morrison@nd.edu|178 Fitz|M-W 1-2pm, Th 1-3pm|
 
 ### Teaching Assistants:
 
