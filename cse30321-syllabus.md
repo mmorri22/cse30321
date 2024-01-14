@@ -42,9 +42,12 @@ Introduction to <b>basic architectural concepts</b> that are present in <b>curre
 
 By the end of this course you should be able to:
 <ol> 
-<li>Describe the fundamental components required in a single core of a modern microprocessor as well as how they interact with each other, with main memory, and with external storage media.</li>
-<li>Suggest, compare, and contrast potential architectural enhancements by applying appropriate performance metrics.</li>
-<li>Apply fundamental knowledge about a processor’s datapath, different memory hierarchies, performance metrics, etc. to design a microprocessor such that it (a) meets a target set of performance goals and (b) is realistically implementable.</li>
+<li><b>Describe</b> the fundamental components required in a <b>single core</b> of a modern microprocessor as well as how they interact with each other, with <b>main memory</b>, and with <b>external storage media</>.</li>
+<li>Suggest, compare, and contrast potential <b>architectural enhancements</b> by applying appropriate <b>performance metrics</b>.</li>
+<li>Apply fundamental knowledge about a <b>processor’s datapath</b>, different <b>memory hierarchies</b>, performance metrics, etc. to <b>design a microprocessor</b> such that it: 
+<ul><li>meets a target set of <b>performance goals</b> and</li>
+<li>is <b>realistically implementable</b>.</li>
+</ul>
 <li>Explain how code written in (different) high-level languages (like C, Java, C++, etc.) can be executed on different microprocessors (e.g., RISC-V, Intel, ARM, etc.) to produce the result intended by the programmer.</li>
 <li>Use knowledge about a microprocessor’s underlying hardware (or “architecture”) to write more efficient software.</li>
 <li>Describe the main architectural approaches to improve computer performance (circa 2004 and 2012).</li>
