@@ -45,7 +45,7 @@ By the end of this course you should be able to:
 <li>Describe the fundamental components required in a single core of a modern microprocessor as well as how they interact with each other, with main memory, and with external storage media.</li>
 <li>Suggest, compare, and contrast potential architectural enhancements by applying appropriate performance metrics.</li>
 <li>Apply fundamental knowledge about a processor’s datapath, different memory hierarchies, performance metrics, etc. to design a microprocessor such that it (a) meets a target set of performance goals and (b) is realistically implementable.</li>
-</li>Explain how code written in (different) high-level languages (like C, Java, C++, etc.) can be executed on different microprocessors (e.g., RISC-V, Intel, ARM, etc.) to produce the result intended by the programmer.</li>
+<li>Explain how code written in (different) high-level languages (like C, Java, C++, etc.) can be executed on different microprocessors (e.g., RISC-V, Intel, ARM, etc.) to produce the result intended by the programmer.</li>
 <li>Use knowledge about a microprocessor’s underlying hardware (or “architecture”) to write more efficient software.</li>
 <li>Describe the main architectural approaches to improve computer performance (circa 2004 and 2012).</li>
 <li>Explain and articulate why modern microprocessors now have more than one core and how software must adapt to accommodate the now prevalent multi-core approach to computing.</li>
