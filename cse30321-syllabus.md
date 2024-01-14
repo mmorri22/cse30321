@@ -122,7 +122,7 @@ This student has used 2.29 of their slip days ( 54 hours out of 72 ). They have 
 
 CSE 30342 requires every student to turn in a separate code repository that contains their own code. Learning benefits from discussion, so you are welcome to discuss approaches and solution ideas with your classmates, but <i>you must write your own solution code and answers to conceptual questions</i>.
 
-Collaboration is an important part of both CSE 20133/20232 and real-world engineering. Talking through your code with other students leads to less stress and loneliness and to easier debugging.
+Collaboration is an important part of both CSE 30342 and real-world engineering. Talking through your code with other students leads to less stress and loneliness and to easier debugging.
 
 But collaboration can hurt your learning, too. We want every student to have worked on every project, and to have encountered the intellectual challenges it poses. Simply asking your classmates to show you their solution and copying it hurts your learning, and constitutes academically dishonest behavior (i.e., plagiarism).
 
