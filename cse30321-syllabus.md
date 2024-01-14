@@ -42,7 +42,7 @@ Introduction to <b>basic architectural concepts</b> that are present in <b>curre
 
 By the end of this course you should be able to:
 <ol> 
-<li><b>Describe</b> the fundamental components required in a <b>single core</b> of a modern microprocessor as well as how they interact with each other, with <b>main memory</b>, and with <b>external storage media</>.</li>
+<li><b>Describe</b> the fundamental components required in a <b>single core</b> of a modern microprocessor as well as how they interact with each other, with <b>main memory</b>, and with <b>external storage media</b>.</li>
 <li>Suggest, compare, and contrast potential <b>architectural enhancements</b> by applying appropriate <b>performance metrics</b>.</li>
 <li>Apply fundamental knowledge about a <b>processor’s datapath</b>, different <b>memory hierarchies</b>, performance metrics, etc. to <b>design a microprocessor</b> such that it: 
 <ul><li>meets a target set of <b>performance goals</b> and</li>
