@@ -48,8 +48,8 @@ By the end of this course you should be able to:
 <ul><li>meets a target set of <b>performance goals</b> and</li>
 <li>is <b>realistically implementable</b>.</li>
 </ul>
-<li>Explain how code written in (different) high-level languages (like C, Java, C++, etc.) can be executed on different microprocessors (e.g., RISC-V, Intel, ARM, etc.) to produce the result intended by the programmer.</li>
-<li>Use knowledge about a microprocessor’s underlying hardware (or “architecture”) to write more efficient software.</li>
-<li>Describe the main architectural approaches to improve computer performance (circa 2004 and 2012).</li>
-<li>Explain and articulate why modern microprocessors now have more than one core and how software must adapt to accommodate the now prevalent multi-core approach to computing.</li>
+<li>Explain how code written in (different) high-level languages (like C, Java, C++, etc.) can be executed on different microprocessors (e.g., RISC-V, Intel, ARM, etc.) to <b>produce the result intended by the programmer</b>.</li>
+<li>Use knowledge about a microprocessor’s <b>underlying hardware</b> (or “architecture”) to <b>write more efficient software</b>.</li>
+<li>Describe the main architectural approaches to <b>improve computer performance</b> (circa 2004 and 2012).</li>
+<li><b>Explain and articulate</b> why modern microprocessors now have <b>more than one core</b> and how software must adapt to accommodate the now prevalent <b>multi-core approach to computing</b>.</li>
 </ol>
