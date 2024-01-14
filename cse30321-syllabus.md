@@ -59,3 +59,23 @@ By the end of this course you should be able to:
 The Lecture Notes and Course Schedule for the Fall 2023 semester may be found on the Canvas page at https://canvas.nd.edu/courses/74671/pages/lecture-notes-and-schedule. This schedule includes all the reading assignments, in-class coding opportunities, and assignment descriptions and due dates.
 
 > <b>Note</b>: All slides and solutions to in-class coding opportunities will be posted <i>after</i> the lecture.
+
+### Time Outside of Class Expectations
+
+According to Federal Law, a "Credit Hour" is <a href="https://fsapartners.ed.gov/sites/default/files/attachments/dpcletters/GEN1106.pdf">legally defined as follows</a>:
+
+> A credit hour is now formally defined, for Title IV aid purposes, as an amount of work that reasonably approximates <i>not less than</i>:<p></p>
+> One hour of classroom or direct faculty instruction and a <i>minimum</i> of two hours of out of class student work each week for approximately fifteen weeks for a semester or trimester hour, or ten to twelve weeks for one quarter hour of credit (or the equivalent amount of work over a different amount of time)
+
+This course is a <i>required</i> engineering course for Electrical Engineers that is 3 credit hours, meaning that the <u>average</u> student must undertake <i>not less than</i> six hours of work each week outside the classroom. In order to promote efficient instruction and learning, my aim is that the average student spends an efficient 2-3 hours per credit hour outside of classroom instruction on this course. The course is designed for the average student to require <b>7.5 hours per week</b> outside the classroom.
+
+$$ { {CreditHours*(hours_{min} + hours_{max})} \over 2 } = { {3*(2+3)} \over 2 } = { {6+9} \over 2 } = 7.5 $$
+
+The approximate breakdown of work expectation in this course per week is as follows (will vary between students):
+<ul>
+    <li><b>1.5 hours</b> per week of <b>preview reading</b></li>
+    <li><b>1.5 hour</b> per week for <b>reviewing your in-class material</b></li>
+    <li><b>4.5 hours</b> per week for <b>Homework Assignments</b></li>
+</ul>
+
+> <b>Note</b>: On the student CIF feedback over the last three years, the average student reported their time outside of class in this course as <b>7.4 hours/week</b>. This is my aim, which means we are working towards a proper balance between <b>challenging you</b> outside of the classroom and <b>respecting your time</b> requirements for other classes, activities, and responsibilities. <b>If you are struggling, please find me or a TA as soon as possible, and we will provide assistance</b>.
