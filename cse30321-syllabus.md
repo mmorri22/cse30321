@@ -1,4 +1,4 @@
-# <center>Welcome to CSE 30321 - Computer Architecture - University of Notre Dame - Spring 2024</center>
+# <p style="text-align: center;">Welcome to CSE 30321 - Computer Architecture - University of Notre Dame - Spring 2024</p>
 
 <center><img src = "http://www.phdcomics.com/comics/archive/phd051013s.gif" length=750 width=500></center>
 
@@ -53,3 +53,9 @@ By the end of this course you should be able to:
 <li>Describe the main architectural approaches to <b>improve computer performance</b> (circa 2004 and 2012).</li>
 <li><b>Explain and articulate</b> why modern microprocessors now have <b>more than one core</b> and how software must adapt to accommodate the now prevalent <b>multi-core approach to computing</b>.</li>
 </ol>
+
+### Lecture Notes and Course Schedule
+
+The Lecture Notes and Course Schedule for the Fall 2023 semester may be found on the Canvas page at https://canvas.nd.edu/courses/74671/pages/lecture-notes-and-schedule. This schedule includes all the reading assignments, in-class coding opportunities, and assignment descriptions and due dates.
+
+> <b>Note</b>: All slides and solutions to in-class coding opportunities will be posted <i>after</i> the lecture.
