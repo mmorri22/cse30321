@@ -1,4 +1,6 @@
-# <p style="text-align: center;">Welcome to CSE 30321 - Computer Architecture - University of Notre Dame - Spring 2024</p>
+# <p style="text-align: center;">Welcome to CSE 30321</p>
+# Computer Architecture - University of Notre Dame
+# Spring 2024
 
 <center><img src = "http://www.phdcomics.com/comics/archive/phd051013s.gif" length=750 width=500></center>
 
