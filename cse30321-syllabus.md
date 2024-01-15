@@ -57,9 +57,9 @@ By the end of this course you should be able to:
 
 ### Lecture Notes and Course Schedule
 
-The Lecture Notes and Course Schedule for the Spring 2024 semester may be found on the Canvas page at <a href = "https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule">https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule</a>. This schedule includes all the reading assignments, in-class coding opportunities, and assignment descriptions and due dates.
+The Lecture Notes and Course Schedule for the Spring 2024 semester may be found on the Canvas page at <a href = "https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule">https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule</a>. This schedule includes all the reading assignments, in-class problems, and assignment descriptions and due dates.
 
-> <b>Note</b>: All slides and solutions to in-class coding opportunities will be posted <i>after</i> the lecture.
+> <b>Note</b>: All solutions to in-class problems will be posted <i>after</i> the lecture.
 
 ### Time Outside of Class Expectations
 
@@ -86,6 +86,9 @@ The approximate breakdown of work expectation in this course per week is as foll
 
 There are XXXX separate assignment categories we will use to assess your progress in the course.
 
+|Category|Num. Assignments|Points Per Assignment|Total Points|
+|:---|:---|:---|:---|
+|Homeworks|10|1,000|10,000|
 
 ### Assignment Grade Breakdown
 
@@ -120,7 +123,7 @@ This student has used 2.29 of their slip days ( 54 hours out of 72 ). They have 
 
 ### Academic Integrity and Collaboration Policy
 
-CSE 30342 requires every student to turn in a separate code repository that contains their own code. Learning benefits from discussion, so you are welcome to discuss approaches and solution ideas with your classmates, but <i>you must write your own solution code and answers to conceptual questions</i>.
+CSE 30321 requires every student to turn in a separate code repository that contains their own code. Learning benefits from discussion, so you are welcome to discuss approaches and solution ideas with your classmates, but <i>you must write your own solution code and answers to conceptual questions</i>.
 
 Collaboration is an important part of both CSE 30342 and real-world engineering. Talking through your code with other students leads to less stress and loneliness and to easier debugging.
 
