@@ -57,7 +57,7 @@ By the end of this course you should be able to:
 
 ### Lecture Notes and Course Schedule
 
-The Lecture Notes and Course Schedule for the Spring 2024 semester may be found on the Canvas page at [[text](https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule)](https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule). This schedule includes all the reading assignments, in-class coding opportunities, and assignment descriptions and due dates.
+The Lecture Notes and Course Schedule for the Spring 2024 semester may be found on the Canvas page at <a href = "https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule">https://canvas.nd.edu/courses/82217/pages/lecture-notes-and-schedule</a>. This schedule includes all the reading assignments, in-class coding opportunities, and assignment descriptions and due dates.
 
 > <b>Note</b>: All slides and solutions to in-class coding opportunities will be posted <i>after</i> the lecture.
 
