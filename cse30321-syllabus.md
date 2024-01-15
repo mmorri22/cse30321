@@ -86,12 +86,12 @@ The approximate breakdown of work expectation in this course per week is as foll
 
 There are XXXX separate assignment categories we will use to assess your progress in the course.
 
-|Category|Num. Assignments|Points Per Assignment|Total Points|
-|:---|:---|:---|:---|
-|Homeworks|10|1,000|10,000|
-|Readings|10|1,000|10,000|
-|Midterm Exams|2|1,000|10,000|
-|Final Exam|1|1,000|10,000|
+|Category|Num. Assignments|Points Per Assignment|Total Points|Percent|
+|:---|:---|:---|:---|:---|
+|Homeworks|12|500|6,000|40%|
+|Readings|10|1,000|10,000|15%|
+|Midterm Exams|2|1,000|10,000|30%|
+|Final Exam|1|1,000|10,000|20%|
 
 ### Assignment Grade Breakdown
 
