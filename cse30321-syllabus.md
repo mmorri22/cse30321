@@ -89,6 +89,9 @@ There are XXXX separate assignment categories we will use to assess your progres
 |Category|Num. Assignments|Points Per Assignment|Total Points|
 |:---|:---|:---|:---|
 |Homeworks|10|1,000|10,000|
+|Readings|10|1,000|10,000|
+|Midterm Exams|2|1,000|10,000|
+|Final Exam|1|1,000|10,000|
 
 ### Assignment Grade Breakdown
 
