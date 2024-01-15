@@ -95,7 +95,7 @@ The approximate breakdown of work expectation in this course per week is as foll
 
 There are four separate assignment categories we will use to assess your progress in the course.
 
-<b>Preview Reading</b>: From the zyBook, these assignments are due Tuesdays at 11:00am. The objective is to prepare you for that week's lectures, including in-class problems, in order to ensure effective 
+<b>Preview Reading</b>: From the zyBook, these assignments are due Tuesdays at 11:00am. The objective is to prepare you for that week's lectures, including in-class problems, in order to ensure effective study. These assignments will consist of a mix of published zyBook sections with their embedded “Participation Activities” or sections from custom chapters added by the professor with referenced readings from other sources (e.g., videos), along with self-test questions.  The zyBook “Challenge Problems” are not included in the daily assignments and are optional, but they do make for very good self-test questions in preparation for the exams.
 
 <b>Homework Assignments</b>: Problem sets and Coding Assignments that are designed to prepare you for exams and enhance programming proficiency. These assignments will be due by 11:59pm on Thursdays.
 
