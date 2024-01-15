@@ -9,6 +9,15 @@
 |:---|:---|:---|
 |Tu Th|11:00am - 12:15pm|DeBartolo Hall 116|
 
+### Textbook
+
+CSE 30321 Computer Architecture zyBook
+<ol>
+<li>Sign in or create an account  at https://learn.zybooks.com</li>
+<li>Enter zyBook code: NDCSE30321DinglerFall2023</li>
+<li>Subscribe.  Cost is $72 for the semester.</li>
+</ol>
+
 ### Professor:
 
 |Name|Email|Office Location|Office Hours|
