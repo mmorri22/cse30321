@@ -68,7 +68,7 @@ According to Federal Law, a "Credit Hour" is <a href="https://fsapartners.ed.gov
 > A credit hour is now formally defined, for Title IV aid purposes, as an amount of work that reasonably approximates <i>not less than</i>:<p></p>
 > One hour of classroom or direct faculty instruction and a <i>minimum</i> of two hours of out of class student work each week for approximately fifteen weeks for a semester or trimester hour, or ten to twelve weeks for one quarter hour of credit (or the equivalent amount of work over a different amount of time)
 
-This course is a <i>required</i> engineering course for Electrical Engineers that is 3 credit hours, meaning that the <u>average</u> student must undertake <i>not less than</i> six hours of work each week outside the classroom. In order to promote efficient instruction and learning, my aim is that the average student spends an efficient 2-3 hours per credit hour outside of classroom instruction on this course. The course is designed for the average student to require <b>7.5 hours per week</b> outside the classroom.
+This course is a <i>required</i> engineering course for Computer Science and Computer Engineering majors that is 3 credit hours, meaning that the <u>average</u> student must undertake <i>not less than</i> six hours of work each week outside the classroom. In order to promote efficient instruction and learning, my aim is that the average student spends an efficient 2-3 hours per credit hour outside of classroom instruction on this course. The course is designed for the average student to require <b>7.5 hours per week</b> outside the classroom.
 
 $$ { {CreditHours*(hours_{min} + hours_{max})} \over 2 } = { {3*(2+3)} \over 2 } = { {6+9} \over 2 } = 7.5 $$
 
