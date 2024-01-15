@@ -132,11 +132,6 @@ Furthermore, you may not utilize AI powered tools such as ChatGPT, Co-Pilot, or 
 
 The following table summarizes how you may work with other students and use print/online sources:
 
-| |Resources|Solutions|AI Tools|
-|:---|:---|:---|:---|
-|<b>Consulting</b>|<font color=gold style="background-color:green">Allowed</font>|<font color=white style="background-color:red">Not Allowed</font>|<font color=white style="background-color:red">Not Allowed</font>|
-|<b>Copying</b>|<font style="background-color:yellow">Cite|<font color=white style="background-color:red">Not Allowed</font>|<font color=white style="background-color:red">Not Allowed</font>|
-
 ![alt text](image.png)
     
 If an instructor sees behavior that is, in their judgment, academically dishonest, they are required to file either an Honor Code Violation Report or a formal report to the College of Engineering Honesty Committee.
