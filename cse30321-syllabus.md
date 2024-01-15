@@ -1,5 +1,5 @@
 # Welcome to CSE 30321 - Computer Architecture
-# University of Notre Dame - Spring 2024
+## University of Notre Dame - Spring 2024
 
 <center><img src = "http://www.phdcomics.com/comics/archive/phd051013s.gif" length=750 width=500></center>
 
@@ -30,7 +30,7 @@ TA Office Hours start the second week of the semester.
 
 ### Additional Links
 
-<b>Course Slack</b>: https://app.slack.com/client/T0HJVP8MS/C05NW4NKEV7
+<b>Course Slack</b>: https://app.slack.com/client/T0HJVP8MS/C06DND1TLBY
 
 <b>Prof Morrison's LinkedIn Page</b>: https://www.linkedin.com/in/gregariousmatt/
 <ul><li>I regularly post job and internship opportunities for my students on LinkedIn</li></ul>
