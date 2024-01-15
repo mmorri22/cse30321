@@ -14,7 +14,7 @@
 CSE 30321 Computer Architecture zyBook
 <ol>
 <li>Sign in or create an account  at https://learn.zybooks.com</li>
-<li>Enter zyBook code: NDCSE30321DinglerFall2023</li>
+<li>Enter zyBook code: NDCSE30321MorrisonSpring2024</li>
 <li>Subscribe.  Cost is $72 for the semester.</li>
 </ol>
 
@@ -93,14 +93,16 @@ The approximate breakdown of work expectation in this course per week is as foll
 
 ### Assignments
 
-There are XXXX separate assignment categories we will use to assess your progress in the course.
+There are four separate assignment categories we will use to assess your progress in the course.
 
 |Category|Num. Assignments|Points Per Assignment|Total Points|Percent|
 |:---|:---|:---|:---|:---|
 |Homeworks|12|500|6,000|40%|
-|Readings|10|1,000|10,000|15%|
-|Midterm Exams|2|1,000|10,000|30%|
-|Final Exam|1|1,000|10,000|20%|
+|Readings|15|100|1,500|10%|
+|Exam 1|1|2,000|2,000|13.33%|
+|Exam 2|1|2,500|2,500|16.67%|
+|Final Exam|1|3,000|3,000|20%|
+|<b>Total</b>|  |  |<b>15,000</b>|<b>100%</b>|
 
 ### Assignment Grade Breakdown
 
