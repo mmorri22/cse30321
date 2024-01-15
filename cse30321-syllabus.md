@@ -15,7 +15,7 @@ CSE 30321 Computer Architecture zyBook
 <ol>
 <li>Sign in or create an account  at https://learn.zybooks.com</li>
 <li>Enter zyBook code: NDCSE30321MorrisonSpring2024</li>
-<li>Subscribe.  Cost is $72 for the semester.</li>
+<li>Subscribe.  Cost is $97 for the semester.</li>
 </ol>
 
 ### Professor:
@@ -32,7 +32,7 @@ TA Office Hours start the second week of the semester.
 
 |Name|Email|Office Location|Office Hours|
 |:---|:---|:---|:---|
-|Brigid Burns|bburns4@nd.edu|XXX|XXX|
+|Brigid Burns|bburns4@nd.edu|XXX|W 12-1pm, Th 3:30-4:30pm|
 |Luka Cvetko|lcvetko@nd.edu|XXX|XXX|
 |Joe Duggan|jduggan5@nd.edu|XXX|XXX|
 |Will Truluck|wtruluck@nd.edu|XXX|XXX|
@@ -94,6 +94,8 @@ The approximate breakdown of work expectation in this course per week is as foll
 ### Assignments
 
 There are four separate assignment categories we will use to assess your progress in the course.
+
+<b>Preview Reading</b>: From the zyBook, these assignments are due Tuesdays at 11:00am. The objective is to prepare you for that week's lectures, including in-class problems, in order to ensure effective 
 
 <b>Homework Assignments</b>: Problem sets and Coding Assignments that are designed to prepare you for exams and enhance programming proficiency. These assignments will be due by 11:59pm on Thursdays.
 
