@@ -119,8 +119,7 @@ The final grade "bins" for each letter grade:
 |B+|Superior work in most areas of the course|13,499 - 13,050| 89.99% - 87% |
 |B|Solid work across the board|13,049 - 12,450| 86.99% - 83% |
 |B-|More than acceptable, but falls short of solid work|12,449 - 12,000| 82.99% - 80% |
-|C+|Work meets all the basic requirements and standards for the
-course|11,999 - 11,550| 79.99% - 77% |
+|C+|Work meets all the basic requirements and standards for the course|11,999 - 11,550| 79.99% - 77% |
 |C|Work meets most of the basic requirements and standards in several areas|11,549 - 10,950| 76.99% - 73% |
 |C-|While acceptable, work falls short of meeting basic standards in several areas|10,949 - 10,500| 72.99% - 70% |
 |D|Work just over the threshold of acceptability|10,499 - 9,000| 69.99% - 60% |
