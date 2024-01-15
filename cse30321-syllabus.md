@@ -95,6 +95,12 @@ The approximate breakdown of work expectation in this course per week is as foll
 
 There are four separate assignment categories we will use to assess your progress in the course.
 
+<b>Homework Assignments</b>: Problem sets and Coding Assignments that are designed to prepare you for exams and enhance programming proficiency. These assignments will be due by 11:59pm on Thursdays.
+
+<b>Exams</b>: Three examinations will be given this semester. They are closed book, closed notes, closed laptop. Exam 1 and Exam 2 are take-home exams, and the final exam will be in-person during the designated final exam schedule time.
+
+Note in the grade breakdown below that the point total for the Exams escalates during the course of the semester. This approach is to increase the point total as your familiarity with my exam expectations increases as well to ensure the best correlation between your exam performance and your technical understanding.
+
 |Category|Num. Assignments|Points Per Assignment|Total Points|Percent|
 |:---|:---|:---|:---|:---|
 |Homeworks|12|500|6,000|40%|
