@@ -142,7 +142,7 @@ The expected deadlines for each assignment are posted on the class website. Our 
 
 However, we understand that life gets in the way. It is possible to submit Homework Assignments late by using an "extension token" for the assignment. Every student will start with a total of 3 days (72 hours) worth of slip time that can be used. If you have remaining time, the tokens are automatically granted.
 
-> <b>Note</b>: Examinations and Reading Assignments are not eligible for Extension Token use.
+> <b>Note</b>: Examinations are not eligible for Extension Token use.
 
 Any request for an extension token will be automatically granted as long as: 
 <ul>
@@ -154,7 +154,7 @@ For example, consider a student who has:
 <ul>
 <li>Submitted Homework 1 three hours late. ( 0.125 slip days, 3 hours )</li>
 <li>Submitted Homework 3 thirty-five hours late ( 1.46 slip days, 35 hours )</li>
-<li>Submitted Homework 6 sixteen hours late ( 0.67 slip days, 16 hours )</li>
+<li>Submitted Reading 9 sixteen hours late ( 0.67 slip days, 16 hours )</li>
 <li>Realizes one day after the deadline that they forgot to submit Homework 9.</li>
 </ul>
     
