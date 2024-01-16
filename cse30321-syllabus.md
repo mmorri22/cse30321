@@ -14,7 +14,7 @@
 CSE 30321 Computer Architecture zyBook
 <ol>
 <li>Sign in or create an account  at https://learn.zybooks.com</li>
-<li>Enter zyBook code: NDCSE30321MorrisonSpring2024</li>
+<li>Enter zyBook code: <code>NDCSE30321MorrisonSpring2024</code></li>
 <li>Subscribe.  Cost is $97 for the semester.</li>
 </ol>
 
@@ -140,9 +140,9 @@ If the class truly simulated a professional software development environment, I 
 
 The expected deadlines for each assignment are posted on the class website. Our assumption is that you will complete each assignment by its due date. 
 
-However, we understand that life gets in the way. It is possible to submit Homework Assignments late by using an "extension token" for the assignment. Every student will start with a total of 3 days (72 hours) worth of slip time that can be used. If you have remaining time, the tokens are automatically granted.
+However, we understand that life gets in the way. It is possible to submit <b>Homework Assignments</b> late by using an "extension token" for the assignment. Every student will start with a total of 3 days (72 hours) worth of slip time that can be used. If you have remaining time, the tokens are automatically granted.
 
-> <b>Note</b>: Examinations are not eligible for Extension Token use.
+> <b>Note</b>: Examinations and Reading Assignments are not eligible for Extension Token use.
 
 Any request for an extension token will be automatically granted as long as: 
 <ul>
@@ -154,8 +154,8 @@ For example, consider a student who has:
 <ul>
 <li>Submitted Homework 1 three hours late. ( 0.125 slip days, 3 hours )</li>
 <li>Submitted Homework 3 thirty-five hours late ( 1.46 slip days, 35 hours )</li>
-<li>Submitted Reading 9 sixteen hours late ( 0.67 slip days, 16 hours )</li>
-<li>Realizes one day after the deadline that they forgot to submit Homework 9.</li>
+<li>Submitted Homework 8 sixteen hours late ( 0.67 slip days, 16 hours )</li>
+<li>Realizes one day after the deadline that they forgot to submit Homework 11.</li>
 </ul>
     
 This student has used 2.29 of their slip days ( 54 hours out of 72 ). They have 0.75 days ( 18 hours remaining ). Therefore, we will need to decline the extension request and assign a grade of 0 because the lateness of the submission ( 24 hours ) exceeds their remaining tokens ( 18 hours ).  
