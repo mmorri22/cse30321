@@ -64,5 +64,4 @@ void fibonacci( )
 
 	}
 
-	//free( results_buffer );
 }

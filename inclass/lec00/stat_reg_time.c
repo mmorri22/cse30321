@@ -64,12 +64,8 @@ void fibonacci( )
 
 		results_buffer[ iter ] = sol_2;
 
-		// results_buffer[ iter ] = results_buffer[ iter-2 ] + results_buffer[ iter - 1 ];
-
 		sol_0 = sol_1;
 		sol_1 = sol_2;
-
 	}
 
-	//free( results_buffer );
 }

@@ -33,7 +33,7 @@ TA Office Hours start the second week of the semester.
 |Name|Email|Office Location|Office Hours|
 |:---|:---|:---|:---|
 |Brigid Burns|bburns4@nd.edu|CSE Commons|W 12-1pm, Th 3:30-4:30pm|
-|Luka Cvetko|lcvetko@nd.edu|XXX|XXX|
+|Luka Cvetko|lcvetko@nd.edu|XXX|Tu, W, Th 6:30 - 7:30pm|
 |Joe Duggan|jduggan5@nd.edu|XXX|XXX|
 |Will Truluck|wtruluck@nd.edu|XXX|XXX|
 
