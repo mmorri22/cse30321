@@ -88,7 +88,7 @@ The approximate breakdown of work expectation in this course per week is as foll
     <li><b>4.5 hours</b> per week for <b>Homework Assignments</b></li>
 </ul>
 
-> <b>Note</b>: On the student CIF feedback over the last three years, the average student reported their time outside of class in this course as <b>7.4 hours/week</b>. This is my aim, which means we are working towards a proper balance between <b>challenging you</b> outside of the classroom and <b>respecting your time</b> requirements for other classes, activities, and responsibilities. <b>If you are struggling, please find me or a TA as soon as possible, and we will provide assistance</b>.
+> <b>Note</b>: On the student CIF feedback over the last three years, the average student reported their time outside of class in 3-credit courses as <b>7.4 hours/week</b>. This is my aim, which means we are working towards a proper balance between <b>challenging you</b> outside of the classroom and <b>respecting your time</b> requirements for other classes, activities, and responsibilities. <b>If you are struggling, please find me or a TA as soon as possible, and we will provide assistance</b>.
 
 
 ### Assignments
@@ -114,9 +114,9 @@ Note in the grade breakdown below that the point total for the Exams escalates d
 
 ### Assignment Grade Breakdown
 
-Your letter grade will be determined by the total points out of the possible 15,000. In other words, there is no curving in this course. Your grade will depend solely on how well you do, and not on how well everyone else does. 
+Your letter grade will be determined by the total points out of the possible 15,000. In other words, there is no curving in this course. 
 
-> Note: It is my policy to not "curve" grades at the end of the semester. 
+> Note: It is my policy to not "curve" grades at the end of the semester. If a student is "close", I do consider the body of their semester's work, and compare it to the Notre Dame Academic Code Description for each letter grade (see below). But once I make my final assessment, it must be final, especially since some students going abroad or on deployment will not have an equal opportunity to request a reconsideration of their grade.
 
 The final grade "bins" for each letter grade:
 
@@ -142,7 +142,7 @@ The expected deadlines for each assignment are posted on the class website. Our 
 
 However, we understand that life gets in the way. It is possible to submit Homework Assignments late by using an "extension token" for the assignment. Every student will start with a total of 3 days (72 hours) worth of slip time that can be used. If you have remaining time, the tokens are automatically granted.
 
-> <b>Note</b>: Examinations are not eligible for Extension Token use.
+> <b>Note</b>: Examinations and Reading Assignments are not eligible for Extension Token use.
 
 Any request for an extension token will be automatically granted as long as: 
 <ul>
@@ -153,9 +153,9 @@ Any request for an extension token will be automatically granted as long as:
 For example, consider a student who has:
 <ul>
 <li>Submitted Homework 1 three hours late. ( 0.125 slip days, 3 hours )</li>
-<li>Submitted Homework 2 thirty-five hours late ( 1.46 slip days, 35 hours )</li>
-<li>Submitted Homework 4 sixteen hours late ( 0.67 slip days, 16 hours )</li>
-<li>Realizes one day after the deadline that they forgot to submit Homework 5.</li>
+<li>Submitted Homework 3 thirty-five hours late ( 1.46 slip days, 35 hours )</li>
+<li>Submitted Homework 6 sixteen hours late ( 0.67 slip days, 16 hours )</li>
+<li>Realizes one day after the deadline that they forgot to submit Homework 9.</li>
 </ul>
     
 This student has used 2.29 of their slip days ( 54 hours out of 72 ). They have 0.75 days ( 18 hours remaining ). Therefore, we will need to decline the extension request and assign a grade of 0 because the lateness of the submission ( 24 hours ) exceeds their remaining tokens ( 18 hours ).  
