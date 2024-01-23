@@ -1,0 +1,10 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ gcc stat_array_time.c -o s_a_t
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ time ./s_a_t
+Start time : 1098
+Finish time: 1723227
+Clocks per second: 1000000
+Average Clocks: 1.722s
+
+real    0m1.732s
+user    0m1.727s
+sys     0m0.001s

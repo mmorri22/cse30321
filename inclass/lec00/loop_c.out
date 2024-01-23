@@ -1,0 +1,7 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ gcc loop.c -o loop
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ time ./loop
+1000000000
+
+real    0m1.681s
+user    0m1.673s
+sys     0m0.002s

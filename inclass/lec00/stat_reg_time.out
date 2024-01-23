@@ -1,0 +1,10 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ gcc stat_reg_time.c -o s_r_t
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ time ./s_r_t
+Start time : 1226
+Finish time: 1525057
+Clocks per second: 1000000
+Average Clocks: 1.524s
+
+real    0m1.540s
+user    0m1.529s
+sys     0m0.006s
