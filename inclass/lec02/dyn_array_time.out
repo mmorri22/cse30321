@@ -1,0 +1,10 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ gcc dyn_array_time.c -o d_a_t
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec00$ time ./d_a_t
+Start time : 1035
+Finish time: 2189826
+Clocks per second: 1000000
+Average Clocks: 2.189s
+
+real    0m2.199s
+user    0m2.185s
+sys     0m0.010s
