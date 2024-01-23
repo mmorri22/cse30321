@@ -1,0 +1,17 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec03$ g++ class_align_sol.cpp -o class_align_sol
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec03$ ./class_align_sol
+Size of std::string: 32
+Size of std::vector: 24
+Size of optimal first_class = 131
+Size of first_class         = 136
+Address of first_class is: 0x7fff07f921b0
+Address of string_1 is   : 0x7fff07f921b0
+Address of string_2 is   : 0x7fff07f921d0
+Address of vector_1 is   : 0x7fff07f921f0
+Address of vector_2 is   : 0x7fff07f92208
+Address of double_1 is   : 0x7fff07f92220
+Address of float_1 is    : 0x7fff07f92228
+Address of int_1 is      : 0x7fff07f9222c
+Address of char_1 is     : 0x7fff07f92230
+Address of char_2 is     : 0x7fff07f92231
+Address of char_3 is     : 0x7fff07f92232

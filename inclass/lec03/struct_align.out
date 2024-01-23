@@ -1,0 +1,16 @@
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec03$ gcc struct_align.c -o struct_align
+cse20133-user@da240cb02f7e:~/cse30321/inclass/lec03$ ./struct_align
+Size of optimal first_struct = 42
+Size of first_struct = 64
+The locations:
+Base address  : 0x55a2e936b2a0
+first_float   : 0x55a2e936b2a0
+first_double  : 0x55a2e936b2a8
+first_char    : 0x55a2e936b2b0
+second_double : 0x55a2e936b2b8
+first_int     : 0x55a2e936b2c0
+second_float  : 0x55a2e936b2c4
+second_char   : 0x55a2e936b2c8
+third_char    : 0x55a2e936b2c9
+char_array    : 0x55a2e936b2d0
+third_float   : 0x55a2e936b2d8
