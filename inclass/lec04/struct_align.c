@@ -24,7 +24,7 @@ int main(){
     fprintf( stdout, "Size of optimal first_struct = %lu\n", optimal_size );
     fprintf( stdout, "Size of first_struct = %lu\n", sizeof(first_struct) );
 
-    fprintf( stdout, "The locations:\n");
+    /*fprintf( stdout, "The locations:\n");
     fprintf( stdout, "Reg address   : %p\n", &example_struct);
     fprintf( stdout, "Base address  : %p\n", example_struct);
     fprintf( stdout, "first_float   : %p\n", &example_struct->first_float);
@@ -36,7 +36,7 @@ int main(){
     fprintf( stdout, "second_char   : %p\n", &example_struct->second_char);
     fprintf( stdout, "third_char    : %p\n", &example_struct->third_char);
     fprintf( stdout, "char_array    : %p\n", &example_struct->char_array);
-    fprintf( stdout, "third_float   : %p\n", &example_struct->third_float);
+    fprintf( stdout, "third_float   : %p\n", &example_struct->third_float);*/
 
     free(example_struct->char_array);
     free(example_struct);
