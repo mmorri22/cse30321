@@ -19,11 +19,14 @@ int main(){
 
     first_struct* example_struct = (first_struct*)malloc( sizeof(first_struct) );
 
+    example_struct->char_array = (char*)malloc(25*sizeof(char));
+
     size_t optimal_size = 3*sizeof(float) + 2*sizeof(double) + 3*sizeof(char) + sizeof(int) + sizeof(char *);
     fprintf( stdout, "Size of optimal first_struct = %lu\n", optimal_size );
     fprintf( stdout, "Size of first_struct = %lu\n", sizeof(first_struct) );
 
     fprintf( stdout, "The locations:\n");
+    fprintf( stdout, "Reg address   : %p\n", &example_struct);
     fprintf( stdout, "Base address  : %p\n", example_struct);
     fprintf( stdout, "char_array    : %p\n", &example_struct->char_array);
     fprintf( stdout, "first_double  : %p\n", &example_struct->first_double);

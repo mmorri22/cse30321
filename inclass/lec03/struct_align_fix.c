@@ -26,6 +26,7 @@ int main(){
     fprintf( stdout, "Size of first_struct = %lu\n", sizeof(first_struct) );
 
     fprintf( stdout, "The locations:\n");
+    fprintf( stdout, "Reg address   : %p\n", &example_struct);
     fprintf( stdout, "Base address  : %p\n", example_struct);
     fprintf( stdout, "char_array    : %p\n", &example_struct->char_array);
     fprintf( stdout, "first_double  : %p\n", &example_struct->first_double);
