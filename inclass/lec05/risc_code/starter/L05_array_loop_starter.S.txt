@@ -6,12 +6,3 @@ addi x19, x0, 12     # x19 (y) = 12
 addi x20, x0, 14     # x20 (z) = 14
 addi x21, x0, 7      # x21 (i) = 7
 # In-Class loop work begins here
-blt x21, x0, 36      # branch if i < 0 to instr 17 (8+9)
-slli x5, x21, 2      # x7 = i * 4
-add x5, x18, x5      # x7 = Address of x[i]
-sub x6, x20, x19     # x6 = x20 - x19
-sw x6, 0(x5)         # x[i] = z - y
-addi x20, x20, 1     # ++z
-addi x19, x19, -1    # --y
-addi x21, x21, -1    # --i
-beq x21, x21, -32    # Back to instruction 8 (16-8)
