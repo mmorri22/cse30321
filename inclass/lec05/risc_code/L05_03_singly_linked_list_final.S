@@ -7,7 +7,7 @@ addi x19, x0, 1    # x19 (x) = 1
 addi x5, x19, -5   # x5 = i - 5
 blt x0, x5, 80     # Branch if i >= 5 by (27-7)*4 instructions (for now)
 lw x7, 0(x18)      # Load the address pointed to by x18 into x7
-bne x7, x0, 8      # Branch (11-9)*4 instruction
+bne x7, x0, 8      # Branch (12-10)*4 instruction
 add x6, x18, x0    # x6 and x18 pointing to most recent alloc
 addi x6, x6, 12    # Point (96/12)*3 blocks down
 sw x19, 0(x6)
@@ -16,7 +16,7 @@ lw x5, 0(x18)
 bne x5, x0, 16     # 4*4 instructions if head node isn't NULL
 sw x6, 0(x18)      # Update head node
 addi x19, x19, 1   # i++
-beq x18, x18, -48  # Branch back to Line 6 (18-6)*4 = 48 
+beq x18, x18, -48  # Branch back to Line 6 (19-7)*4 = 48 
 lw x7, 4(x5)       # Load 4(x5) into x7
 beq x7, x0, 16     # Branch if x7 == 0
 add x5, x7, x0     # Set x5 pointer == x7 pointer
