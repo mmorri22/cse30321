@@ -3,16 +3,16 @@
 
 // Fix the example struct here
 typedef struct first_struct{
-    float first_float;
+    char* char_array;
     double first_double;
-    char first_char;
     double second_double;
-    int first_int;
+    float first_float;
     float second_float;
+    float third_float;
+    int first_int;
+    char first_char;
     char second_char;
     char third_char;
-    char* char_array;
-    float third_float;
 }first_struct;
 
 int main(){
