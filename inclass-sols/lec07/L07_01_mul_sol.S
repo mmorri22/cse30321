@@ -1,6 +1,6 @@
 # Given the mapping of registers to variables below, 
 # write a program to implement the following expression:
-# Z = (A+B) x (C-D)
+# Z = (A+B) * (C-D);
 #
 # Values are:
 # A=4, B=2, C=6, D=3

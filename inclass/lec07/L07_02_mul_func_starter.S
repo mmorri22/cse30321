@@ -24,26 +24,24 @@ addi x19, x19, 3
 
 # Write the Solution Here
 # 1) Use the function argument registers to pass by value
-add x12, x8, x0  # x12 is A passed by value
-add x13, x9, x0  # x13 is B passed by value
-add x14, x18, x0  # x14 is C passed by value
-add x15, x19, x0  # x15 is D passed by value
+
 
 # Call the function
-jal x1, MUL_FUNC
+
 
 # Store the result in the main function result
-add x20, x10, x0
+
 
 # Return 0
-beq x0, x0, END
 
-MUL_FUNC:
+
+# Name the function call
+
 
 # Add the passed by value copies
-add x5, x12, x13
-sub x6, x14, x15
 
+
+# When we set it up correctly, we can use the exact same code!
 add x7, x0, x0   # Iterator is in x7
 add x28, x0, x0  # Multiplication Sum is x28
 
@@ -56,10 +54,9 @@ beq x28, x28, MUL_LOOP
 
 # Put the result in one of the return registers
 PRINT_SUM:
-add x10, x28, x0
+
 
 # Jump and link back to main
-jalr x0, x1, 0
 
-END:
-quit
+
+# Terminate the program
