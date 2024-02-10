@@ -24,20 +24,42 @@ addi x18, x5, 0x110
 # 2-1 - Must pass a *copy* of the pointer to the function. Use Function arguments (leave a0, a1)
 add x12, x18, x0
 jal x1, CALLOC_SLLIST 
-add x1, x0, x0     ############# <------- FIX 1 - Empty x0 since we returned from the function call
+add x1, x0, x0     # FIX 1 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12 since it is out of scope
 
+#############################################
+#### THE CHANGE FOR THE LOOP STARTS HERE ####
+#############################################
+
+# 6 - Start loop
+addi x19, x0, 1   # i = 1
+addi x5, x0, 5    # Reuse x5 = 5
+
+BEGIN_FOR: 
+
+bge x19, x5, END_FOR
+
+addi x19, x19, 1      # ++i;
+beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
+
+END_FOR:
+
+###########################################
+#### THE CHANGE FOR THE LOOP ENDS HERE ####
+#### Check the return 0 comment as well####
+###########################################
 
 # 4 Free the sllist struct
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     ############# <-------- FIX 2 - Empty x0 since we returned from the function call
+add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
 # Return 0
-add x5, x0, x0     ############# <-------- FIX 3 - Set temp x5 to 0 to return 0;
+add x19, x0, x0    ######## <---- Reset i to 0
+add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
 
