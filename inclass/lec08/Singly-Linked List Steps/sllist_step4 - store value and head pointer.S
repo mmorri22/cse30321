@@ -1,5 +1,4 @@
-# Step 3 - In this portion, the loop is set up for the sllist insertions
-# We check at this stage to ensure we are properly freeing and 0-ing out all registers
+# Step 4 - We will store the actual data element and then update the head pointer 
 #
 # This is the equivalent of:
 #
@@ -44,12 +43,9 @@ addi x19, x0, 1   # x = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
-sub x6, x5, x19 
+sub x6, x5, x19       # x6 = 5 - x
 blt x6, x0, END_FOR
 
-####################################################
-#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
-####################################################
 
 # 7.1 - Check if(the_list->head_node == NULL)
 IF: 
@@ -62,6 +58,18 @@ sw x0, 0(x28)
 sw x0, 4(x28)
 sw x0, 8(x28)
 
+####################################################
+#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
+####################################################
+
+sw x19, 0(x28)   	# made_node->the_int = x;
+sw x28, 0(x18)		# the_list->head_node = made_node;
+
+
+###########################################
+#### THE CHANGE FOR THE LOOP ENDS HERE ####
+#### Check the return 0 comment as well####
+###########################################
 
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
@@ -78,10 +86,6 @@ beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
-###########################################
-#### THE CHANGE FOR THE LOOP ENDS HERE ####
-#### Check the return 0 comment as well####
-###########################################
 
 # 4 Free the sllist struct
 add x12, x18, x0    # Pointer to the_list is copied to x12
