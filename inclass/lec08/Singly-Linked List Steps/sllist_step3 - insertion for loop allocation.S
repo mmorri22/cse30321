@@ -11,7 +11,12 @@
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
 #   for(int i = 0; i <= 5; ++i){
-#		// Do nothing
+#		if(the_list->head_node == NULL){
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			the_list->head_node = made_node;
+#		}
+#	
 #	}
 # 	
 #	free(the_list);
@@ -35,7 +40,7 @@ add x12, x0, x0    # Empty x12 since it is out of scope
 
 
 # 6 - Start loop
-addi x19, x0, 1   # i = 1
+addi x19, x0, 1   # x = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
@@ -46,6 +51,27 @@ blt x6, x0, END_FOR
 #### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
 ####################################################
 
+# 7.1 - Check if(the_list->head_node == NULL)
+IF: 
+sw x7, 0(x18)
+bne x7, x0, ELSE_IF
+
+# 7.2 - Get the address of x18 + 12 bytes
+addi x28, x18, 12
+sw x0, 0(x28)
+sw x0, 4(x28)
+sw x0, 8(x28)
+
+
+add x28, x0, x0  # x28 goes out of scope before ELSE_IF
+
+beq x0, x0, END_IF
+
+ELSE_IF:
+
+# Do nothing so far
+
+END_IF:
 
 ##################################################
 #### THE CHANGE FOR THE LIST INSERT ENDS HERE ####
