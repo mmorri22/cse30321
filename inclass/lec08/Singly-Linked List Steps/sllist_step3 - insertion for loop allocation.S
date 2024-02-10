@@ -73,11 +73,6 @@ ELSE_IF:
 
 END_IF:
 
-##################################################
-#### THE CHANGE FOR THE LIST INSERT ENDS HERE ####
-####     Check the return 0 comment as well   ####
-##################################################
-
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
