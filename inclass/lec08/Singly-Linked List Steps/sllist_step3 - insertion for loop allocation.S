@@ -1,4 +1,4 @@
-# Step 2 - In this portion, the loop is set up for the sllist insertions
+# Step 32 - In this portion, the loop is set up for the sllist insertions
 # We check at this stage to ensure we are properly freeing and 0-ing out all registers
 #
 # This is the equivalent of:
@@ -33,9 +33,6 @@ jal x1, CALLOC_SLLIST
 add x1, x0, x0     # FIX 1 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12 since it is out of scope
 
-#############################################
-#### THE CHANGE FOR THE LOOP STARTS HERE ####
-#############################################
 
 # 6 - Start loop
 addi x19, x0, 1   # i = 1
@@ -44,6 +41,16 @@ addi x5, x0, 5    # Reuse x5 = 5
 BEGIN_FOR: 
 sub x6, x5, x19 
 blt x6, x0, END_FOR
+
+####################################################
+#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
+####################################################
+
+
+##################################################
+#### THE CHANGE FOR THE LIST INSERT ENDS HERE ####
+####     Check the return 0 comment as well   ####
+##################################################
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
