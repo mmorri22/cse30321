@@ -22,8 +22,8 @@
 # Starter Code
 MAIN:
 
-addi x18, x18, 10
-addi x19, x19, 17
+addi x18, x0, 10
+addi x19, x0, 17
 
 # Write the Solution Here
 # 1) Use the function argument registers to pass by value

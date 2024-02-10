@@ -15,48 +15,38 @@
 #
 # You are permitted to use labels in this problem
 
+# Starter Code
 MAIN:
 
 addi x8, x8, 4
 addi x9, x9, 2
-addi x18, x18, 6
-addi x19, x19, 3
 
 # Write the Solution Here
 # 1) Use the function argument registers to pass by value
-
+add x12, x8, x0  # x12 is A passed by value
+add x13, x9, x0  # x13 is B passed by value
 
 # Call the function
-
+jal x1, SUM_FUNC
 
 # Store the result in the main function result
-
+add x20, x10, x0
 
 # Return 0
-
+beq x0, x0, END
 
 # Name the function call
-
+SUM_FUNC:
 
 # Add the passed by value copies
+add x5, x12, x13
 
-
-# When we set it up correctly, we can use the exact same code!
-add x7, x0, x0   # Iterator is in x7
-add x28, x0, x0  # Multiplication Sum is x28
-
-MUL_LOOP:
-sub x29, x7, x6  # We stop when i - x6 = 0
-beq x29, x0, PRINT_SUM  # Branch to print sum when done
-add x28, x28, x5
-addi x7, x7, 1
-beq x28, x28, MUL_LOOP
-
-# Put the result in one of the return registers
-PRINT_SUM:
-
+# # Put the result in one of the return registers
+add x10, x5, x0
 
 # Jump and link back to main
-
+jalr x0, x1, 0
 
 # Terminate the program
+END:
+quit
