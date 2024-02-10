@@ -36,8 +36,8 @@ addi x19, x0, 1   # i = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
-
-bge x19, x5, END_FOR
+sub x6, x5, x19 
+blt x6, x0, END_FOR
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
@@ -59,6 +59,7 @@ add x18, x0, x0     # x18 is no longer pointing to the memory
 
 # Return 0
 add x19, x0, x0    ######## <---- Reset i to 0
+add x6, x0, x0     ######## <---- Reset x6 to 0
 add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
