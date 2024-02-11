@@ -1,7 +1,3 @@
-# Author: Prof. Matthew Morrison
-# Email : matt.morrison@nd.edu
-# File Name: sllist_step7 - Non-Recursive Free.S
-#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
@@ -9,7 +5,7 @@
 # Step 7 - Now, we will free the nodes non-recursively
 # This involves freeing all the elements in order
 # 
-#
+# Changes from sllist_step6.S are made starting at Line 152-185
 ###################################################################################
 # This is the equivalent of:
 #
@@ -156,29 +152,25 @@ END_FOR:
 # Step 10 - Free the Nodes at the end of main
 # 10.1 - Set up the curr_ptr and next_ptr
 
-lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
-lw x28, 4(x7)	# sll_node* next_ptr = curr_ptr->next_ptr;
 
 
-# 10.2 - Set up the FREE_NODE_LOOP
+# 10.2-1 - Set up the FREE_NODE_LOOP
 
-FREE_NODE_LOOP:
 
-beq x7, x0, END_FREE_NODE_LOOP  # while( curr_ptr != NULL ) - Branch if curr_ptr == NULL
 
 # 10.3 - Free the current pointer - free(curr_ptr)
-sw x0, 0(x7)
-sw x0, 4(x7)
-sw x0, 8(x7)
+
 
 
 # 10.4 - Update the pointers in the loop 
-add x7, x28, x0		# curr_ptr = next_ptr;
-lw x28, 4(x7) 		# next_ptr = curr_ptr->next_ptr;
 
-beq x0, x0, FREE_NODE_LOOP
 
-END_FREE_NODE_LOOP:
+
+# 10.2-3 - End the FREE_NODE_LOOP
+
+
+# 10.2-3 - End the FREE_NODE_LOOP
+
 
 #####################################################
 #### THE CHANGE FOR FREEING THE NODES  ENDS HERE ####

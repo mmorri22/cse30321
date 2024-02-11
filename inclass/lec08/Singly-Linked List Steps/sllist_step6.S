@@ -1,13 +1,9 @@
-# Author: Prof. Matthew Morrison
-# Email : matt.morrison@nd.edu
-# File Name: sllist_step6 - Inserting in non-empty list.S
-#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
 ######################################################################################
 # Part 6 - We will insert the node at the end of the linked list, which we have found
-# The changes are made in Lines X-X from sllist_step5
+# The changes are to be made starting at Line 114 from sllist_step5
 ######################################################################################
 #
 # This is the equivalent of:
@@ -121,21 +117,18 @@ END_WHILE:
 
 # Step 9 - Enter the node at the end of the linked list, which is already found
 # 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-addi x29, x28, 0xc
-sw x0, 0(x29)
-sw x0, 4(x29)
-sw x0, 8(x29)
+
 
 # 9.2 - made_node->the_int = x;
-sw x19, 0(x29)
+
 
 # 9.3 - curr_ptr->next_node = made_node;
-sw x29, 4(x28)
+
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
-add x29, x0, x0  ###### FIX - Step 9.4 - Clear x29 since it is about to go out of scope
+		###### FIX - Step 9.4 - Clear x29 since it is about to go out of scope
 
 ###############################################################
 #### THE CHANGE FOR ENTERING THE END OF THE LIST ENDS HERE ####

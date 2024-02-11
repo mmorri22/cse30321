@@ -1,10 +1,18 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step2 - insertion for loop example.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
-###################################################################################
-# Part 5 - We will store the actual data element and then update the head pointer 
-# The new changes and comments in this file start at Line 90 from sllist_step4
-###################################################################################
+########################################################################################
+# Part 2 - In this portion, the loop is set up for the sllist insertions
+# We check at this stage to ensure we are properly freeing and 0-ing out all registers
+#
+# This file contains a fix of sllist_step1 - first calloc and free - fix.S 
+# Primary changes occur on lines 49-69
+# Another change at Line 82 to ensure registers are cleared
+########################################################################################
 #
 # This is the equivalent of:
 #
@@ -12,27 +20,11 @@
 #	struct sll_node* head_ptr;
 #}sllist;
 #
-#typedef struct sll_node{
-#	int value;
-#	struct sll_node* next_ptr;
-#}sllist;
-#
 #int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
 #   for(int i = 0; i <= 5; ++i){
-#		if(the_list->head_node == NULL){
-#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->the_int = x;
-#			the_list->head_node = made_node;
-#		}
-#		else{
-#			sll_node* curr_ptr = the_list->head_node;
-#			while( curr_ptr->next_node != NULL ){
-#				curr_ptr = curr_ptr->next_node;
-#			}
-#		}
-#	
+#		// Do nothing
 #	}
 # 	
 #	free(the_list);
@@ -54,70 +46,27 @@ jal x1, CALLOC_SLLIST
 add x1, x0, x0     # FIX 1 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12 since it is out of scope
 
+#############################################
+#### THE CHANGE FOR THE LOOP STARTS HERE ####
+#############################################
 
 # Step 6 - Setting up the first main loop
-addi x19, x0, 1   # x = 1
+addi x19, x0, 1   # i = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
-sub x6, x5, x19       # x6 = 5 - x
+sub x6, x5, x19 
 blt x6, x0, END_FOR
-
-
-# Step 7 - Set up the insertion loop
-# 7.1 - Check if(the_list->head_node == NULL)
-IF: 
-lw x7, 0(x18)
-bne x7, x0, ELSE
-
-# 7.2 - Get the address of x18 + 12 bytes
-addi x28, x18, 12
-sw x0, 0(x28)
-sw x0, 4(x28)
-sw x0, 8(x28)
-
-
-# 7.5 - Create the node itself
-sw x19, 0(x28)   	# made_node->the_int = x;
-sw x28, 0(x18)		# the_list->head_node = made_node;
-
-
-# 7.3 - Clear local registersand branch to END_IF
-add x28, x0, x0  # x28 goes out of scope before ELSE_IF
-
-beq x0, x0, END_IF
-
-######################################################
-#### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
-######################################################
-
-ELSE:
-
-# Step 8 - Iterate through the list to find the next node location
-# 8.1 - Get the location of the head nodr from head_ptr 
-
-
-# 8.2 - Develop the while loop
-
-
-# 8.3 - These two instructions make up:
-# curr_ptr = curr_ptr->next_node;
-
-
-
-####################################################
-#### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####
-####################################################
-
-# 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
-END_IF:
-add x7, x0, x0   # Clear x7 since it is about to go out of scope
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
+###########################################
+#### THE CHANGE FOR THE LOOP ENDS HERE ####
+#### Check the return 0 comment as well####
+###########################################
 
 # Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12

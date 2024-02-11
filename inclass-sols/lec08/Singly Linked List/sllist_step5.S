@@ -1,9 +1,13 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step5 - Iterating to the end.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
 ###################################################################################
 # Part 5 - We will store the actual data element and then update the head pointer 
-# The new changes and comments in this file start at Line 90 from sllist_step4
+# The new changes and comments in this file occur in Lines 96-121 from sllist_step4
 ###################################################################################
 #
 # This is the equivalent of:
@@ -87,23 +91,30 @@ add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
+ELSE:
+
 ######################################################
 #### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
 ######################################################
 
-ELSE:
-
 # Step 8 - Iterate through the list to find the next node location
 # 8.1 - Get the location of the head nodr from head_ptr 
-
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
 
 # 8.2 - Develop the while loop
+WHILE:
 
+lw x29, 4(x28)			# x29 = curr_ptr->next_node
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
 
 # 8.3 - These two instructions make up:
 # curr_ptr = curr_ptr->next_node;
+add x28, x29, x0		# Set x28 to x29
+lw x29, 4(x28)			# Load the next 
 
+beq x0, x0, WHILE
 
+END_WHILE:
 
 ####################################################
 #### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####

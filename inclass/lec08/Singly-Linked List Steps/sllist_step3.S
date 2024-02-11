@@ -1,7 +1,3 @@
-# Author: Prof. Matthew Morrison
-# Email : matt.morrison@nd.edu
-# File Name: sllist_step3 - insertion for loop allocation.S
-#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
@@ -68,29 +64,21 @@ blt x6, x0, END_FOR
 
 # Step 7 - Set up the looop
 # 7.1 - Check if(the_list->head_node == NULL)
-IF: 
-lw x7, 0(x18)
-bne x7, x0, ELSE
+
 
 # 7.2 - Get the address of x18 + 12 bytes
-addi x28, x18, 12
-sw x0, 0(x28)
-sw x0, 4(x28)
-sw x0, 8(x28)
 
 
 # 7.3 - Clear local registersand branch to END_IF
-add x28, x0, x0  # x28 goes out of scope before ELSE_IF
+  # x28 goes out of scope before ELSE_IF
 
-beq x0, x0, END_IF
 
-ELSE:
+# We will add ELSE here, but no nothing before step 7.4
 
-# Do nothing so far
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
-END_IF:
-add x7, x0, x0   # Clear x7 since it is about to go out of scope
+
+   # Clear x7 since it is about to go out of scope
 
 addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop

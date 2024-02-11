@@ -1,10 +1,14 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step4 - store value and head pointer.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
-###################################################################################
-# Part 5 - We will store the actual data element and then update the head pointer 
-# The new changes and comments in this file start at Line 90 from sllist_step4
-###################################################################################
+####################################################################################
+# Step 4 - We will store the actual data element and then update the head pointer 
+# The lines and comments are on Lines 76-87
+####################################################################################
 #
 # This is the equivalent of:
 #
@@ -25,12 +29,6 @@
 #			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
 #			made_node->the_int = x;
 #			the_list->head_node = made_node;
-#		}
-#		else{
-#			sll_node* curr_ptr = the_list->head_node;
-#			while( curr_ptr->next_node != NULL ){
-#				curr_ptr = curr_ptr->next_node;
-#			}
 #		}
 #	
 #	}
@@ -63,7 +61,6 @@ BEGIN_FOR:
 sub x6, x5, x19       # x6 = 5 - x
 blt x6, x0, END_FOR
 
-
 # Step 7 - Set up the insertion loop
 # 7.1 - Check if(the_list->head_node == NULL)
 IF: 
@@ -76,42 +73,32 @@ sw x0, 0(x28)
 sw x0, 4(x28)
 sw x0, 8(x28)
 
+####################################################
+#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
+####################################################
 
 # 7.5 - Create the node itself
 sw x19, 0(x28)   	# made_node->the_int = x;
 sw x28, 0(x18)		# the_list->head_node = made_node;
 
+###########################################
+#### THE CHANGE FOR THE LOOP ENDS HERE ####
+#### Check the return 0 comment as well####
+###########################################
 
 # 7.3 - Clear local registersand branch to END_IF
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
-######################################################
-#### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
-######################################################
-
 ELSE:
 
-# Step 8 - Iterate through the list to find the next node location
-# 8.1 - Get the location of the head nodr from head_ptr 
-
-
-# 8.2 - Develop the while loop
-
-
-# 8.3 - These two instructions make up:
-# curr_ptr = curr_ptr->next_node;
-
-
-
-####################################################
-#### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####
-####################################################
+# Do nothing so far
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
-add x7, x0, x0   # Clear x7 since it is about to go out of scope
+add x7, x0, x0   # Clear x7 since it is about to go out of scope (was designed at IF)
+
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
@@ -122,15 +109,15 @@ END_FOR:
 # Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
-add x12, x0, x0    # Empty x12
+add x1, x0, x0      # Empty x0 since we returned from the function call
+add x12, x0, x0     # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
 # Step 0 - Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+add x19, x0, x0    # Reset i to 0
+add x6, x0, x0     # Reset x6 to 0
+add x5, x0, x0     # Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
 

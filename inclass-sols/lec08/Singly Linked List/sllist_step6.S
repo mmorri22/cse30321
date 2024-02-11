@@ -1,10 +1,14 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step6 - Inserting in non-empty list.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
-###################################################################################
-# Part 5 - We will store the actual data element and then update the head pointer 
-# The new changes and comments in this file start at Line 90 from sllist_step4
-###################################################################################
+######################################################################################
+# Part 6 - We will insert the node at the end of the linked list, which we have found
+# The changes are made in Lines 118-142 from sllist_step5
+######################################################################################
 #
 # This is the equivalent of:
 #
@@ -31,6 +35,9 @@
 #			while( curr_ptr->next_node != NULL ){
 #				curr_ptr = curr_ptr->next_node;
 #			}
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			curr_ptr->next_node = made_node;
 #		}
 #	
 #	}
@@ -87,33 +94,54 @@ add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
-######################################################
-#### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
-######################################################
-
 ELSE:
 
 # Step 8 - Iterate through the list to find the next node location
 # 8.1 - Get the location of the head nodr from head_ptr 
-
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
 
 # 8.2 - Develop the while loop
+WHILE:
 
+lw x29, 4(x28)			# x29 = curr_ptr->next_node
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
 
 # 8.3 - These two instructions make up:
 # curr_ptr = curr_ptr->next_node;
+add x28, x29, x0		# Set x28 to x29
+lw x29, 4(x28)			# Load the next 
 
+beq x0, x0, WHILE
 
+END_WHILE:
 
-####################################################
-#### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####
-####################################################
+#################################################################
+#### THE CHANGE FOR ENTERING THE END OF THE LIST STARTS HERE ####
+#################################################################
+
+# Step 9 - Enter the node at the end of the linked list, which is already found
+# 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+addi x29, x28, 0xc
+sw x0, 0(x29)
+sw x0, 4(x29)
+sw x0, 8(x29)
+
+# 9.2 - made_node->the_int = x;
+sw x19, 0(x29)
+
+# 9.3 - curr_ptr->next_node = made_node;
+sw x29, 4(x28)
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
+add x29, x0, x0  ###### FIX - Step 9.4 - Clear x29 since it is about to go out of scope
 
-addi x19, x19, 1      # ++i;
+###############################################################
+#### THE CHANGE FOR ENTERING THE END OF THE LIST ENDS HERE ####
+###############################################################
+
+addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
@@ -128,9 +156,9 @@ add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
 # Step 0 - Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+add x19, x0, x0    # Reset x to 0
+add x6, x0, x0     # Reset x6 to 0
+add x5, x0, x0     # Reset temp x5 to 0 to return 0;
 beq x0, x0, END
 
 

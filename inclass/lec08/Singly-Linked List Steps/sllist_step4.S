@@ -1,13 +1,9 @@
-# Author: Prof. Matthew Morrison
-# Email : matt.morrison@nd.edu
-# File Name: sllist_step4 - store value and head pointer.S
-#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
 ####################################################################################
 # Step 4 - We will store the actual data element and then update the head pointer 
-# The lines and comments are on Lines 76-87
+# The lines and comments start on Line 72
 ####################################################################################
 #
 # This is the equivalent of:
@@ -78,8 +74,7 @@ sw x0, 8(x28)
 ####################################################
 
 # 7.5 - Create the node itself
-sw x19, 0(x28)   	# made_node->the_int = x;
-sw x28, 0(x18)		# the_list->head_node = made_node;
+
 
 ###########################################
 #### THE CHANGE FOR THE LOOP ENDS HERE ####

@@ -1,7 +1,3 @@
-# Author: Prof. Matthew Morrison
-# Email : matt.morrison@nd.edu
-# File Name: sllist_step2 - insertion for loop example.S
-#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
@@ -11,7 +7,7 @@
 #
 # This file contains a fix of sllist_step1 - first calloc and free - fix.S 
 # Primary changes occur on lines 49-69
-# Another change at Line 82 to ensure registers are cleared
+# Another change at Line 68 (initially) to ensure registers are cleared
 ########################################################################################
 #
 # This is the equivalent of:
@@ -51,17 +47,7 @@ add x12, x0, x0    # Empty x12 since it is out of scope
 #############################################
 
 # Step 6 - Setting up the first main loop
-addi x19, x0, 1   # i = 1
-addi x5, x0, 5    # Reuse x5 = 5
 
-BEGIN_FOR: 
-sub x6, x5, x19 
-blt x6, x0, END_FOR
-
-addi x19, x19, 1      # ++i;
-beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
-
-END_FOR:
 
 ###########################################
 #### THE CHANGE FOR THE LOOP ENDS HERE ####
@@ -77,9 +63,9 @@ add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
 # Step 0 - Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+add x19, x0, x0    # Reset x to 0
+add x6, x0, x0     # Reset x6 to 0
+    ############ FIX 3 - Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
 

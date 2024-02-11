@@ -1,3 +1,7 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step0 - return 0.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
@@ -9,5 +13,11 @@
 # }; 
 
 
+MAIN:
+
+# Step 0 - Return 0
+beq x0, x0, END
 
 
+END:
+quit

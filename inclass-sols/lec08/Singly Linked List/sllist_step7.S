@@ -1,11 +1,16 @@
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step7 - Non-Recursive Free.S
+#
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
 ###################################################################################
-# Part 5 - We will store the actual data element and then update the head pointer 
-# The new changes and comments in this file start at Line 90 from sllist_step4
-###################################################################################
+# Step 7 - Now, we will free the nodes non-recursively
+# This involves freeing all the elements in order
+# 
 #
+###################################################################################
 # This is the equivalent of:
 #
 #typedef struct sllist{
@@ -16,6 +21,7 @@
 #	int value;
 #	struct sll_node* next_ptr;
 #}sllist;
+#
 #
 #int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
@@ -31,8 +37,19 @@
 #			while( curr_ptr->next_node != NULL ){
 #				curr_ptr = curr_ptr->next_node;
 #			}
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			curr_ptr->next_node = made_node;
 #		}
 #	
+#	}
+#
+#	sll_node* curr_ptr = the_list->head_node;
+#	sll_node* next_ptr = curr_ptr->next_ptr;
+#	while( curr_ptr != NULL ){
+#		free(curr_ptr);
+#		curr_ptr = next_ptr;
+#		next_ptr = curr_ptr->next_ptr;
 #	}
 # 	
 #	free(the_list);
@@ -77,7 +94,7 @@ sw x0, 4(x28)
 sw x0, 8(x28)
 
 
-# 7.5 - Create the node itself
+# 7.5 - Create the initial node itself
 sw x19, 0(x28)   	# made_node->the_int = x;
 sw x28, 0(x18)		# the_list->head_node = made_node;
 
@@ -87,50 +104,101 @@ add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
-######################################################
-#### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
-######################################################
-
 ELSE:
 
 # Step 8 - Iterate through the list to find the next node location
 # 8.1 - Get the location of the head nodr from head_ptr 
-
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
 
 # 8.2 - Develop the while loop
+WHILE:
 
+lw x29, 4(x28)			# x29 = curr_ptr->next_node
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
 
 # 8.3 - These two instructions make up:
 # curr_ptr = curr_ptr->next_node;
+add x28, x29, x0		# Set x28 to x29
+lw x29, 4(x28)			# Load the next 
 
+beq x0, x0, WHILE
 
+END_WHILE:
 
-####################################################
-#### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####
-####################################################
+# Step 9 - Enter the node at the end of the linked list, which is already found
+# 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+addi x29, x28, 0xc
+sw x0, 0(x29)
+sw x0, 4(x29)
+sw x0, 8(x29)
+
+# 9.2 - made_node->the_int = x;
+sw x19, 0(x29)
+
+# 9.3 - curr_ptr->next_node = made_node;
+sw x29, 4(x28)
+
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
+add x29, x0, x0  # Step 9.4 - Clear x29 since it is about to go out of scope
 
-addi x19, x19, 1      # ++i;
+addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
+
+######################################################
+#### THE CHANGE FOR FREEING THE NODES STARTS HERE ####
+######################################################
+
+# Step 10 - Free the Nodes at the end of main
+# 10.1 - Set up the curr_ptr and next_ptr
+
+lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+lw x28, 4(x7)	# sll_node* next_ptr = curr_ptr->next_ptr;
+
+
+# 10.2-1 - Set up the FREE_NODE_LOOP
+FREE_NODE_LOOP:
+
+beq x7, x0, END_FREE_NODE_LOOP  # while( curr_ptr != NULL ) - Branch if curr_ptr == NULL
+
+# 10.3 - Free the current pointer - free(curr_ptr)
+sw x0, 0(x7)
+sw x0, 4(x7)
+sw x0, 8(x7)
+
+
+# 10.4 - Update the pointers in the loop 
+add x7, x28, x0		# curr_ptr = next_ptr;
+lw x28, 4(x7) 		# next_ptr = curr_ptr->next_ptr;
+
+
+# 10.2-3 - End the FREE_NODE_LOOP
+beq x0, x0, FREE_NODE_LOOP
+
+# 10.2-3 - End the FREE_NODE_LOOP
+END_FREE_NODE_LOOP:
+
+#####################################################
+#### THE CHANGE FOR FREEING THE NODES  ENDS HERE ####
+#####################################################
 
 
 # Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
-add x12, x0, x0    # Empty x12
+add x1, x0, x0      # Empty x0 since we returned from the function call
+add x12, x0, x0     # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
 # Step 0 - Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+add x19, x0, x0    # Reset x to 0
+add x6, x0, x0     # Reset x6 to 0
+add x5, x0, x0     # Reset temp x5 to 0 to return 0;
 beq x0, x0, END
 
 
