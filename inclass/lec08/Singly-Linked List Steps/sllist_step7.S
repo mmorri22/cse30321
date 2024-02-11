@@ -1,10 +1,27 @@
-# Step 5 - We will store the actual data element and then update the head pointer 
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step7 - Non-Recursive Free.S
 #
+# Architecture : RISC-V Assembly
+# interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
+#
+###################################################################################
+# Step 7 - Now, we will free the nodes non-recursively
+# This involves freeing all the elements in order
+# 
+#
+###################################################################################
 # This is the equivalent of:
 #
 #typedef struct sllist{
 #	struct sll_node* head_ptr;
 #}sllist;
+#
+#typedef struct sll_node{
+#	int value;
+#	struct sll_node* next_ptr;
+#}sllist;
+#
 #
 #int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
@@ -26,6 +43,14 @@
 #		}
 #	
 #	}
+#
+#	sll_node* curr_ptr = the_list->head_node;
+#	sll_node* next_ptr = curr_ptr->next_ptr;
+#	while( curr_ptr != NULL ){
+#		free(curr_ptr);
+#		curr_ptr = next_ptr;
+#		next_ptr = curr_ptr->next_ptr;
+#	}
 # 	
 #	free(the_list);
 #	return 0;
@@ -35,11 +60,11 @@
 
 MAIN:
 
-# 1 - x18 points to address 0x051a6110
+# Step 1 - x18 points to address 0x051a6110
 lui x5, 0x051a6
 addi x18, x5, 0x110
 
-# 2 - Call the function calloc for the sllist struct
+# Step 2 - Call the function calloc for the sllist struct
 # 2-1 - Must pass a *copy* of the pointer to the function. Use Function arguments (leave a0, a1)
 add x12, x18, x0
 jal x1, CALLOC_SLLIST 
@@ -47,7 +72,7 @@ add x1, x0, x0     # FIX 1 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12 since it is out of scope
 
 
-# 6 - Start loop
+# Step 6 - Setting up the first main loop
 addi x19, x0, 1   # x = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
@@ -56,6 +81,7 @@ sub x6, x5, x19       # x6 = 5 - x
 blt x6, x0, END_FOR
 
 
+# Step 7 - Set up the insertion loop
 # 7.1 - Check if(the_list->head_node == NULL)
 IF: 
 lw x7, 0(x18)
@@ -68,18 +94,19 @@ sw x0, 4(x28)
 sw x0, 8(x28)
 
 
-# 7.3 - Create the initial node
+# 7.5 - Create the initial node itself
 sw x19, 0(x28)   	# made_node->the_int = x;
 sw x28, 0(x18)		# the_list->head_node = made_node;
 
 
+# 7.3 - Clear local registersand branch to END_IF
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
 ELSE:
 
-
+# Step 8 - Iterate through the list to find the next node location
 # 8.1 - Get the location of the head nodr from head_ptr 
 lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
 
@@ -98,10 +125,7 @@ beq x0, x0, WHILE
 
 END_WHILE:
 
-#################################################################
-#### THE CHANGE FOR ENTERING THE END OF THE LIST STARTS HERE ####
-#################################################################
-
+# Step 9 - Enter the node at the end of the linked list, which is already found
 # 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
 addi x29, x28, 0xc
 sw x0, 0(x29)
@@ -114,36 +138,69 @@ sw x19, 0(x29)
 # 9.3 - curr_ptr->next_node = made_node;
 sw x29, 4(x28)
 
+
+# 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
-add x29, x0, x0  # 9.4 - Clear x29 since it is about to go out of scope
+add x29, x0, x0  # Step 9.4 - Clear x29 since it is about to go out of scope
 
-###############################################################
-#### THE CHANGE FOR ENTERING THE END OF THE LIST ENDS HERE ####
-###############################################################
-
-addi x19, x19, 1      # ++i;
+addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
+######################################################
+#### THE CHANGE FOR FREEING THE NODES STARTS HERE ####
+######################################################
 
-# 4 Free the sllist struct
+# Step 10 - Free the Nodes at the end of main
+# 10.1 - Set up the curr_ptr and next_ptr
+
+lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+lw x28, 4(x7)	# sll_node* next_ptr = curr_ptr->next_ptr;
+
+
+# 10.2 - Set up the FREE_NODE_LOOP
+
+FREE_NODE_LOOP:
+
+beq x7, x0, END_FREE_NODE_LOOP  # while( curr_ptr != NULL ) - Branch if curr_ptr == NULL
+
+# 10.3 - Free the current pointer - free(curr_ptr)
+sw x0, 0(x7)
+sw x0, 4(x7)
+sw x0, 8(x7)
+
+
+# 10.4 - Update the pointers in the loop 
+add x7, x28, x0		# curr_ptr = next_ptr;
+lw x28, 4(x7) 		# next_ptr = curr_ptr->next_ptr;
+
+beq x0, x0, FREE_NODE_LOOP
+
+END_FREE_NODE_LOOP:
+
+#####################################################
+#### THE CHANGE FOR FREEING THE NODES  ENDS HERE ####
+#####################################################
+
+
+# Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
-add x12, x0, x0    # Empty x12
+add x1, x0, x0      # Empty x0 since we returned from the function call
+add x12, x0, x0     # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
-# Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+# Step 0 - Return 0
+add x19, x0, x0    # Reset x to 0
+add x6, x0, x0     # Reset x6 to 0
+add x5, x0, x0     # Reset temp x5 to 0 to return 0;
 beq x0, x0, END
 
 
-# 3 - Allocate the memory for the sllist struct
+# Step 3 - Allocate the memory for the sllist struct
 # Note: Input is in x12 from MAIN
 CALLOC_SLLIST:
 
@@ -158,7 +215,7 @@ jalr x0, x1, 0
 
 
 
-# 5 - Free the sllist 
+# Step 5 - Free the sllist Procedure
 FREE_SLLIST:
 
 # 5-1 Must clear the memory pointed to by x12

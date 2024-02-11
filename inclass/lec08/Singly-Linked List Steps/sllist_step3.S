@@ -1,4 +1,15 @@
-# Step 4 - We will store the actual data element and then update the head pointer 
+# Author: Prof. Matthew Morrison
+# Email : matt.morrison@nd.edu
+# File Name: sllist_step3 - insertion for loop allocation.S
+#
+# Architecture : RISC-V Assembly
+# interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
+#
+#######################################################################################
+# Part 3 - In this portion, we are performing the task of inserting into an empty list
+# Lines 65-101 contain the changes and comments from sllist_step2
+# Note the ELSE set up at Line 87, which is empty now and will be addressed in future files
+#######################################################################################
 #
 # This is the equivalent of:
 #
@@ -20,7 +31,7 @@
 #			made_node->the_int = x;
 #			the_list->head_node = made_node;
 #		}
-#	
+#		// No Else Yet
 #	}
 # 	
 #	free(the_list);
@@ -31,11 +42,11 @@
 
 MAIN:
 
-# 1 - x18 points to address 0x051a6110
+# Step 1 - x18 points to address 0x051a6110
 lui x5, 0x051a6
 addi x18, x5, 0x110
 
-# 2 - Call the function calloc for the sllist struct
+# Step 2 - Call the function calloc for the sllist struct
 # 2-1 - Must pass a *copy* of the pointer to the function. Use Function arguments (leave a0, a1)
 add x12, x18, x0
 jal x1, CALLOC_SLLIST 
@@ -43,15 +54,19 @@ add x1, x0, x0     # FIX 1 - Empty x0 since we returned from the function call
 add x12, x0, x0    # Empty x12 since it is out of scope
 
 
-# 6 - Start loop
+# Step 6 - Setting up the first main loop
 addi x19, x0, 1   # x = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
-sub x6, x5, x19       # x6 = 5 - x
+sub x6, x5, x19 
 blt x6, x0, END_FOR
 
+####################################################
+#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
+####################################################
 
+# Step 7 - Set up the looop
 # 7.1 - Check if(the_list->head_node == NULL)
 IF: 
 lw x7, 0(x18)
@@ -63,19 +78,8 @@ sw x0, 0(x28)
 sw x0, 4(x28)
 sw x0, 8(x28)
 
-####################################################
-#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
-####################################################
 
-sw x19, 0(x28)   	# made_node->the_int = x;
-sw x28, 0(x18)		# the_list->head_node = made_node;
-
-
-###########################################
-#### THE CHANGE FOR THE LOOP ENDS HERE ####
-#### Check the return 0 comment as well####
-###########################################
-
+# 7.3 - Clear local registersand branch to END_IF
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
@@ -84,32 +88,36 @@ ELSE:
 
 # Do nothing so far
 
+# 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
-add x7, x0, x0   # Clear x7 since it is about to go out of scope (was designed at IF)
+add x7, x0, x0   # Clear x7 since it is about to go out of scope
 
-
-addi x19, x19, 1      # ++i;
+addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
+###########################################
+#### THE CHANGE FOR THE LOOP ENDS HERE ####
+#### Check the return 0 comment as well####
+###########################################
 
-# 4 Free the sllist struct
+# Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
-add x12, x0, x0    # Empty x12
+add x1, x0, x0      # Empty x0 since we returned from the function call
+add x12, x0, x0     # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
-# Return 0
-add x19, x0, x0    ######## <---- Reset i to 0
-add x6, x0, x0     ######## <---- Reset x6 to 0
-add x5, x0, x0     # FIX 3 - Set temp x5 to 0 to return 0;
+# Step 0 - Return 0
+add x19, x0, x0    # Reset i to 0
+add x6, x0, x0     # Reset x6 to 0
+add x5, x0, x0     # Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
 
-# 3 - Allocate the memory for the sllist struct
+# Step 3 - Allocate the memory for the sllist struct
 # Note: Input is in x12 from MAIN
 CALLOC_SLLIST:
 
@@ -124,7 +132,7 @@ jalr x0, x1, 0
 
 
 
-# 5 - Free the sllist 
+# Step 5 - Free the sllist Procedure
 FREE_SLLIST:
 
 # 5-1 Must clear the memory pointed to by x12
