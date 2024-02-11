@@ -1,5 +1,4 @@
-# Step 3 - In this portion, the loop is set up for the sllist insertions
-# We check at this stage to ensure we are properly freeing and 0-ing out all registers
+# Step 5 - We will store the actual data element and then update the head pointer 
 #
 # This is the equivalent of:
 #
@@ -15,6 +14,12 @@
 #			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
 #			made_node->the_int = x;
 #			the_list->head_node = made_node;
+#		}
+#		else{
+#			sll_node* curr_ptr = the_list->head_node;
+#			while( curr_ptr->next_node != NULL ){
+#				curr_ptr = curr_ptr->next_node;
+#			}
 #		}
 #	
 #	}
@@ -44,12 +49,9 @@ addi x19, x0, 1   # x = 1
 addi x5, x0, 5    # Reuse x5 = 5
 
 BEGIN_FOR: 
-sub x6, x5, x19 
+sub x6, x5, x19       # x6 = 5 - x
 blt x6, x0, END_FOR
 
-####################################################
-#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
-####################################################
 
 # 7.1 - Check if(the_list->head_node == NULL)
 IF: 
@@ -63,13 +65,42 @@ sw x0, 4(x28)
 sw x0, 8(x28)
 
 
+# 7.3 - Create the initial node
+sw x19, 0(x28)   	# made_node->the_int = x;
+sw x28, 0(x18)		# the_list->head_node = made_node;
+
+
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
 beq x0, x0, END_IF
 
 ELSE:
 
-# Do nothing so far
+######################################################
+#### THE CHANGE FOR THE LIST ITERATOR STARTS HERE ####
+######################################################
+
+# 8.1 - Get the location of the head nodr from head_ptr 
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+
+# 8.2 - Develop the while loop
+WHILE:
+
+lw x29, 4(x28)			# x29 = curr_ptr->next_node
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
+
+# 8.3 - These two instructions make up:
+# curr_ptr = curr_ptr->next_node;
+add x28, x29, x0		# Set x28 to x29
+lw x29, 4(x28)			# Load the next 
+
+beq x0, x0, WHILE
+
+END_WHILE:
+
+####################################################
+#### THE CHANGE FOR THE LIST ITERATOR ENDS HERE ####
+####################################################
 
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
@@ -79,10 +110,6 @@ beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
-###########################################
-#### THE CHANGE FOR THE LOOP ENDS HERE ####
-#### Check the return 0 comment as well####
-###########################################
 
 # 4 Free the sllist struct
 add x12, x18, x0    # Pointer to the_list is copied to x12

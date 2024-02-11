@@ -80,6 +80,8 @@ ELSE:
 # Do nothing so far
 
 END_IF:
+add x7, x0, x0   # Clear x7 since it is about to go out of scope (was designed at IF)
+
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
