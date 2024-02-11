@@ -6,6 +6,11 @@
 #	struct sll_node* head_ptr;
 #}sllist;
 #
+#typedef struct sll_node{
+#	int value;
+#	struct sll_node* next_ptr;
+#}sllist;
+#
 #int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #

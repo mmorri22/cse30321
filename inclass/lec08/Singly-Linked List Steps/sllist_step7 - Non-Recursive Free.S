@@ -1,14 +1,9 @@
-# Step 4 - We will store the actual data element and then update the head pointer 
+# Step 7 - Now, we will free the nodes 
 #
 # This is the equivalent of:
 #
 #typedef struct sllist{
 #	struct sll_node* head_ptr;
-#}sllist;
-#
-#typedef struct sll_node{
-#	int value;
-#	struct sll_node* next_ptr;
 #}sllist;
 #
 #int main(){
@@ -20,7 +15,24 @@
 #			made_node->the_int = x;
 #			the_list->head_node = made_node;
 #		}
+#		else{
+#			sll_node* curr_ptr = the_list->head_node;
+#			while( curr_ptr->next_node != NULL ){
+#				curr_ptr = curr_ptr->next_node;
+#			}
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			curr_ptr->next_node = made_node;
+#		}
 #	
+#	}
+#
+#	sll_node* curr_ptr = the_list->head_node;
+#	sll_node* next_ptr = curr_ptr->next_ptr;
+#	while( curr_ptr != NULL ){
+#		free(curr_ptr);
+#		curr_ptr = next_ptr;
+#		next_ptr = curr_ptr->next_ptr;
 #	}
 # 	
 #	free(the_list);
@@ -63,18 +75,11 @@ sw x0, 0(x28)
 sw x0, 4(x28)
 sw x0, 8(x28)
 
-####################################################
-#### THE CHANGE FOR THE LIST INSERT STARTS HERE ####
-####################################################
 
+# 7.3 - Create the initial node
 sw x19, 0(x28)   	# made_node->the_int = x;
 sw x28, 0(x18)		# the_list->head_node = made_node;
 
-
-###########################################
-#### THE CHANGE FOR THE LOOP ENDS HERE ####
-#### Check the return 0 comment as well####
-###########################################
 
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
 
@@ -82,16 +87,79 @@ beq x0, x0, END_IF
 
 ELSE:
 
-# Do nothing so far
+
+# 8.1 - Get the location of the head nodr from head_ptr 
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+
+# 8.2 - Develop the while loop
+WHILE:
+
+lw x29, 4(x28)			# x29 = curr_ptr->next_node
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
+
+# 8.3 - These two instructions make up:
+# curr_ptr = curr_ptr->next_node;
+add x28, x29, x0		# Set x28 to x29
+lw x29, 4(x28)			# Load the next 
+
+beq x0, x0, WHILE
+
+END_WHILE:
+
+# 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+addi x29, x28, 0xc
+sw x0, 0(x29)
+sw x0, 4(x29)
+sw x0, 8(x29)
+
+# 9.2 - made_node->the_int = x;
+sw x19, 0(x29)
+
+# 9.3 - curr_ptr->next_node = made_node;
+sw x29, 4(x28)
 
 END_IF:
-add x7, x0, x0   # Clear x7 since it is about to go out of scope (was designed at IF)
-
+add x7, x0, x0   # Clear x7 since it is about to go out of scope
+add x29, x0, x0  # 9.4 - Clear x29 since it is about to go out of scope
 
 addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
+
+######################################################
+#### THE CHANGE FOR FREEING THE NODES STARTS HERE ####
+######################################################
+
+# 10.1 - Set up the curr_ptr and next_ptr
+
+lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+lw x28, 4(x7)	# sll_node* next_ptr = curr_ptr->next_ptr;
+
+
+# 10.2 - Set up the FREE_NODE_LOOP
+
+FREE_NODE_LOOP:
+
+beq x7, x0, END_FREE_NODE_LOOP  # while( curr_ptr != NULL ) - Branch if curr_ptr == NULL
+
+# 10.3 - Free the current pointer - free(curr_ptr)
+sw x0, 0(x7)
+sw x0, 4(x7)
+sw x0, 8(x7)
+
+
+# 10.4 - Update the pointers in the loop 
+add x7, x28, x0		# curr_ptr = next_ptr;
+lw x28, 4(x7) 		# next_ptr = curr_ptr->next_ptr;
+
+beq x0, x0, FREE_NODE_LOOP
+
+END_FREE_NODE_LOOP:
+
+#####################################################
+#### THE CHANGE FOR FREEING THE NODES  ENDS HERE ####
+#####################################################
 
 
 # 4 Free the sllist struct
