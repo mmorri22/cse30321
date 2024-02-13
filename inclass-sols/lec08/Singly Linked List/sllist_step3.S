@@ -7,36 +7,37 @@
 #
 #######################################################################################
 # Part 3 - In this portion, we are performing the task of inserting into an empty list
-# Lines 65-101 contain the changes and comments from sllist_step2
+# Lines 69-100 contain the changes and comments from sllist_step2
 # Note the ELSE set up at Line 87, which is empty now and will be addressed in future files
 #######################################################################################
 #
 # This is the equivalent of:
 #
-#typedef struct sllist{
-#	struct sll_node* head_ptr;
-#}sllist;
+# include <stdlib.h>
 #
-#typedef struct sll_node{
+# typedef struct sllist{
+#	struct sll_node* head_ptr;
+# }sllist;
+#
+# typedef struct sll_node{
 #	int value;
 #	struct sll_node* next_ptr;
-#}sllist;
+# }sll_node;
 #
-#int main(){
+# int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
-#   for(int i = 0; i <= 5; ++i){
-#		if(the_list->head_node == NULL){
-#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->the_int = x;
-#			the_list->head_node = made_node;
+#   for(int x = 0; x <= 5; ++x){
+#		if(the_list->head_ptr == NULL){
+# 			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->value = x;
+#			the_list->head_ptr = made_node; 
 #		}
-#		// No Else Yet
 #	}
 # 	
 #	free(the_list);
 #	return 0;
-#}
+# }
 
 
 
@@ -81,9 +82,9 @@ sw x0, 8(x28)
 
 # 7.3 - Clear local registersand branch to END_IF
 add x28, x0, x0  # x28 goes out of scope before ELSE_IF
-
 beq x0, x0, END_IF
 
+# We will add ELSE here, but nothing else before step 7.4
 ELSE:
 
 # Do nothing so far

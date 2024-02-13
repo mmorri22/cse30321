@@ -7,14 +7,19 @@
 #
 # Part 1 - Test to make sure you calloc and free the sllist struct
 #
-###########################################################################
-# This file contains a fix of sllist_step1 - first calloc and free.S 
+#####################################################################
+# Modifications from sllist_step0.S:
 #
-# Modifications from sllist_ste1 - first calloc and free.S:
-# Lines 41, 48, and 54 clear registers to reset the architecture
-###########################################################################
+# Step 1 - x18 points to address 0x051a6110
+# Step 2 - Call the function calloc for the sllist struct
+# Step 3 - Allocate the memory for the sllist struct
+# Step 4 - Free the sllist struct main call
+# Step 5 - Free the sllist Procedure
+#####################################################################
 #
 # This is the equivalent of:
+#
+# #include <stdlib.h>
 #
 # typedef struct sllist{
 #	struct sll_node* head_ptr;
@@ -22,7 +27,7 @@
 #
 # int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
-#	
+# 	
 #	free(the_list);
 #	return 0;
 # }

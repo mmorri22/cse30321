@@ -4,7 +4,7 @@
 # Part 1 - Test to make sure you calloc and free the sllist struct
 #
 #####################################################################
-# Modifications from sllist_step0 - return 0.S:
+# Modifications from sllist_step0.S:
 #
 # Step 1 - x18 points to address 0x051a6110
 # Step 2 - Call the function calloc for the sllist struct
@@ -15,16 +15,18 @@
 #
 # This is the equivalent of:
 #
-#typedef struct sllist{
-#	struct sll_node* head_ptr;
-#}sllist;
+# #include <stdlib.h>
 #
-#int main(){
+# typedef struct sllist{
+#	struct sll_node* head_ptr;
+# }sllist;
+#
+# int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
-#	
+# 	
 #	free(the_list);
 #	return 0;
-#}
+# }
 
 
 

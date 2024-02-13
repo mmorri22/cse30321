@@ -13,6 +13,8 @@
 ###################################################################################
 # This is the equivalent of:
 #
+# include <stdlib.h>
+#
 # typedef struct sllist{
 #	struct sll_node* head_ptr;
 # }sllist;
@@ -20,38 +22,36 @@
 # typedef struct sll_node{
 #	int value;
 #	struct sll_node* next_ptr;
-# }sllist;
-#
+# }sll_node;
 #
 # int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
-#   for(int i = 0; i <= 5; ++i){
-#		if(the_list->head_node == NULL){
-#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->the_int = x;
-#			the_list->head_node = made_node;
+#   for(int x = 0; x <= 5; ++x){
+#		if(the_list->head_ptr == NULL){
+# 			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->value = x;
+#			the_list->head_ptr = made_node; 
 #		}
 #		else{
-#			sll_node* curr_ptr = the_list->head_node;
-#			while( curr_ptr->next_node != NULL ){
-#				curr_ptr = curr_ptr->next_node;
+#			sll_node* curr_ptr = the_list->head_ptr;
+#			while( curr_ptr->next_ptr != NULL ){
+#				curr_ptr = curr_ptr->next_ptr;
 #			}
-#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->the_int = x;
-#			curr_ptr->next_node = made_node;
+# 			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->value = x;
+#			curr_ptr->next_ptr = made_node; 
 #		}
-#	
 #	}
 #
-#	sll_node* curr_ptr = the_list->head_node;
+#	sll_node* curr_ptr = the_list->head_ptr;
 #	sll_node* next_ptr = curr_ptr->next_ptr;
 #	while( curr_ptr != NULL ){
 #		free(curr_ptr);
 #		curr_ptr = next_ptr;
 #		next_ptr = curr_ptr->next_ptr;
 #	}
-# 	
+#	
 #	free(the_list);
 #	return 0;
 # }
@@ -82,7 +82,7 @@ blt x6, x0, END_FOR
 
 
 # Step 7 - Set up the insertion loop
-# 7.1 - Check if(the_list->head_node == NULL)
+# 7.1 - Check if(the_list->head_ptr == NULL)
 IF: 
 lw x7, 0(x18)
 bne x7, x0, ELSE
@@ -95,8 +95,8 @@ sw x0, 8(x28)
 
 
 # 7.5 - Create the initial node itself
-sw x19, 0(x28)   	# made_node->the_int = x;
-sw x28, 0(x18)		# the_list->head_node = made_node;
+sw x19, 0(x28)   	# made_node->value = x;
+sw x28, 0(x18)		# the_list->head_ptr = made_node;
 
 
 # 7.3 - Clear local registersand branch to END_IF
@@ -108,16 +108,16 @@ ELSE:
 
 # Step 8 - Iterate through the list to find the next node location
 # 8.1 - Get the location of the head nodr from head_ptr 
-lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+lw x28, 0(x18)	# sll_node* curr_ptr = the_list->head_ptr;
 
 # 8.2 - Develop the while loop
 WHILE:
 
-lw x29, 4(x28)			# x29 = curr_ptr->next_node
-beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_node == NULL
+lw x29, 4(x28)			# x29 = curr_ptr->next_ptr
+beq x29, x0, END_WHILE	# Exit the while loop if curr_ptr->next_ptr == NULL
 
 # 8.3 - These two instructions make up:
-# curr_ptr = curr_ptr->next_node;
+# curr_ptr = curr_ptr->next_ptr;
 add x28, x29, x0		# Set x28 to x29
 lw x29, 4(x28)			# Load the next 
 
@@ -132,10 +132,10 @@ sw x0, 0(x29)
 sw x0, 4(x29)
 sw x0, 8(x29)
 
-# 9.2 - made_node->the_int = x;
+# 9.2 - made_node->value = x;
 sw x19, 0(x29)
 
-# 9.3 - curr_ptr->next_node = made_node;
+# 9.3 - curr_ptr->next_ptr = made_node;
 sw x29, 4(x28)
 
 
@@ -156,7 +156,7 @@ END_FOR:
 # Step 10 - Free the Nodes at the end of main
 # 10.1 - Set up the curr_ptr and next_ptr
 
-lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_node;
+lw x7, 0(x18)	# sll_node* curr_ptr = the_list->head_ptr;
 lw x28, 4(x7)	# sll_node* next_ptr = curr_ptr->next_ptr;
 
 

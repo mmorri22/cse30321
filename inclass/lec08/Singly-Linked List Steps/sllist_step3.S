@@ -9,30 +9,32 @@
 #
 # This is the equivalent of:
 #
-#typedef struct sllist{
-#	struct sll_node* head_ptr;
-#}sllist;
+# #include <stdlib.h>
 #
-#typedef struct sll_node{
+# typedef struct sllist{
+#	struct sll_node* head_ptr;
+# }sllist;
+#
+# typedef struct sll_node{
 #	int value;
 #	struct sll_node* next_ptr;
-#}sllist;
+# }sll_node;
 #
-#int main(){
+# int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
 #   for(int i = 0; i <= 5; ++i){
 #		if(the_list->head_node == NULL){
 #			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
 #			made_node->the_int = x;
-#			the_list->head_node = made_node;
+#			the_list->head_ptr = made_node;
 #		}
 #		// No Else Yet
 #	}
 # 	
 #	free(the_list);
 #	return 0;
-#}
+# }
 
 
 
@@ -73,8 +75,10 @@ blt x6, x0, END_FOR
   # x28 goes out of scope before ELSE_IF
 
 
-# We will add ELSE here, but no nothing before step 7.4
+# We will add ELSE here, but nothing else before step 7.4
 
+
+# Do nothing so far
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 

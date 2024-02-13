@@ -16,11 +16,13 @@
 #
 # This is the equivalent of:
 #
-#typedef struct sllist{
-#	struct sll_node* head_ptr;
-#}sllist;
+# #include <stdlib.h>
 #
-#int main(){
+# typedef struct sllist{
+#	struct sll_node* head_ptr;
+# }sllist;
+#
+# int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
 #   for(int i = 0; i <= 5; ++i){
@@ -29,7 +31,7 @@
 # 	
 #	free(the_list);
 #	return 0;
-#}
+# }
 
 
 

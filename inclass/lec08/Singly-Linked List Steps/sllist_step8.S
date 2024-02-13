@@ -1,14 +1,15 @@
 # Architecture : RISC-V Assembly
 # interpreter  : https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter
 #
-######################################################################################
-# Part 6 - We will insert the node at the end of the linked list, which we have found
-# The changes are to be made starting at Line 114 from sllist_step5
-######################################################################################
+###################################################################################
+# Step 8 - We will write a procedure that updates the redundant code
+# 
+# sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+# made_node->the_int = x;
+# curr_ptr->next_node = made_node; OR the_list->head_node = made_node;
 #
+###################################################################################
 # This is the equivalent of:
-#
-# include <stdlib.h>
 #
 # typedef struct sllist{
 #	struct sll_node* head_ptr;
@@ -17,32 +18,41 @@
 # typedef struct sll_node{
 #	int value;
 #	struct sll_node* next_ptr;
-# }sll_node;
+# }sllist;
+#
 #
 # int main(){
 #	sllist* the_list = ( sllist* )calloc( 1, sizeof(sllist) );
 #
-#   for(int x = 0; x <= 5; ++x){
-#		if(the_list->head_ptr == NULL){
-# 			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->value = x;
-#			the_list->head_ptr = made_node; 
+#   for(int i = 0; i <= 5; ++i){
+#		if(the_list->head_node == NULL){
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			the_list->head_node = made_node;
 #		}
 #		else{
-#			sll_node* curr_ptr = the_list->head_ptr;
-#			while( curr_ptr->next_ptr != NULL ){
-#				curr_ptr = curr_ptr->next_ptr;
+#			sll_node* curr_ptr = the_list->head_node;
+#			while( curr_ptr->next_node != NULL ){
+#				curr_ptr = curr_ptr->next_node;
 #			}
-# 			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-#			made_node->value = x;
-#			curr_ptr->next_ptr = made_node; 
+#			sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
+#			made_node->the_int = x;
+#			curr_ptr->next_node = made_node;
 #		}
-#	}
 #	
+#	}
+#
+#	sll_node* curr_ptr = the_list->head_node;
+#	sll_node* next_ptr = curr_ptr->next_ptr;
+#	while( curr_ptr != NULL ){
+#		free(curr_ptr);
+#		curr_ptr = next_ptr;
+#		next_ptr = curr_ptr->next_ptr;
+#	}
+# 	
 #	free(the_list);
 #	return 0;
 # }
-
 
 
 
@@ -82,7 +92,7 @@ sw x0, 4(x28)
 sw x0, 8(x28)
 
 
-# 7.5 - Create the node itself
+# 7.5 - Create the initial node itself
 sw x19, 0(x28)   	# made_node->the_int = x;
 sw x28, 0(x18)		# the_list->head_node = made_node;
 
@@ -113,40 +123,67 @@ beq x0, x0, WHILE
 
 END_WHILE:
 
-#################################################################
-#### THE CHANGE FOR ENTERING THE END OF THE LIST STARTS HERE ####
-#################################################################
-
 # Step 9 - Enter the node at the end of the linked list, which is already found
 # 9.1 - sll_node* made_node = ( sll_node* )calloc( 1, sizeof(sll_node) );
-
+addi x29, x28, 0xc
+sw x0, 0(x29)
+sw x0, 4(x29)
+sw x0, 8(x29)
 
 # 9.2 - made_node->the_int = x;
-
+sw x19, 0(x29)
 
 # 9.3 - curr_ptr->next_node = made_node;
+sw x29, 4(x28)
 
 
 # 7.4 - Clear x7, increment ++x, and branch back to BEGIN_FOR
 END_IF:
 add x7, x0, x0   # Clear x7 since it is about to go out of scope
-		###### FIX - Step 9.4 - Clear x29 since it is about to go out of scope
-
-###############################################################
-#### THE CHANGE FOR ENTERING THE END OF THE LIST ENDS HERE ####
-###############################################################
+add x29, x0, x0  # Step 9.4 - Clear x29 since it is about to go out of scope
 
 addi x19, x19, 1      # ++x;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
 
+######################################################
+#### THE CHANGE FOR FREEING THE NODES STARTS HERE ####
+######################################################
+
+# Step 10 - Free the Nodes at the end of main
+# 10.1 - Set up the curr_ptr and next_ptr
+
+
+
+# 10.2-1 - Set up the FREE_NODE_LOOP
+
+
+
+# 10.3 - Free the current pointer - free(curr_ptr)
+
+
+
+# 10.4 - Update the pointers in the loop 
+
+
+
+# 10.2-3 - End the FREE_NODE_LOOP
+
+
+# 10.2-3 - End the FREE_NODE_LOOP
+
+
+#####################################################
+#### THE CHANGE FOR FREEING THE NODES  ENDS HERE ####
+#####################################################
+
 
 # Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
 jal x1, FREE_SLLIST # free(the_list);
-add x1, x0, x0     # FIX 2 - Empty x0 since we returned from the function call
-add x12, x0, x0    # Empty x12
+add x1, x0, x0      # Empty x0 since we returned from the function call
+add x12, x0, x0     # Empty x12
 add x18, x0, x0     # x18 is no longer pointing to the memory
 
 
