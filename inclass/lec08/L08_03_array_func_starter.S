@@ -16,7 +16,7 @@
 # 	return 0;
 # }
 # 
-# In main, array is in x18 and points to 0x7fff1a10, array_len is in x19, and result_sum is in x20. 
+# In main, array is in x18 and points to 0x7fff1510, array_len is in x19, and result_sum is in x20. 
 # In array_sum, sum is in x21 and i is in x22.
 #
 # Ensure all garbage is properly collected at the end of the program.
@@ -24,9 +24,9 @@
 # Starter Code
 MAIN:
 
-# 1. Store the base address in x18 of 0x7fff1a10
+# 1. Store the base address in x18 of 0x7fff1510
 lui x5, 0x7fff1
-addi x18, x5, 0xa10
+addi x18, x5, 0x510
 
 # 2. Store the array elements. 
 

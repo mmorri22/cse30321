@@ -14,8 +14,8 @@
 # }
 #
 # Registers in main are A=x18, B=19
-# For simplicity, store A at 0x7fff1a10 for pass by reference
-# For simplicity, store B at 0x7fff1a18 for pass by reference
+# For simplicity, store A at 0x7fff1310 for pass by reference
+# For simplicity, store B at 0x7fff1318 for pass by reference
 #
 # You are permitted to use labels in this problem
 #
@@ -30,8 +30,8 @@ addi x19, x0, 17
 # Write the Solution Here
 # 1) Use the function argument registers to pass by value
 lui x5, 0x7fff1
-addi x12, x5, 0xa10
-addi x13, x5, 0xa18
+addi x12, x5, 0x310
+addi x13, x5, 0x318
 sw x18, 0(x12)
 sw x19, 0(x13)
 

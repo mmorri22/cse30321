@@ -14,8 +14,8 @@
 # }
 #
 # Registers in main are A=x18, B=19
-# For simplicity, store A at 0x7fff1a10 for pass by reference
-# For simplicity, store B at 0x7fff1a18 for pass by reference
+# For simplicity, store A at 0x7fff1310 for pass by reference
+# For simplicity, store B at 0x7fff1318 for pass by reference
 #
 # You are permitted to use labels in this problem
 #
