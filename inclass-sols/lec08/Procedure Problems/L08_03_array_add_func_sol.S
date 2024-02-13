@@ -18,6 +18,8 @@
 # 
 # In main, array is in x18 and points to 0x7fff1a10, array_len is in x19, and result_sum is in x20. 
 # In array_sum, sum is in x21 and i is in x22.
+#
+# Ensure all garbage is properly collected at the end of the program.
 
 # Starter Code
 MAIN:
@@ -37,31 +39,49 @@ sw x28, 8(x18)
 sw x29, 12(x18)
 
 # Store the length
-addi x19, x0, 5
+addi x19, x0, 4
 
 # Put in function inputs
-addi x10, x18, 0
-addi x11, x19, 0
+addi x12, x18, 0
+addi x13, x19, 0
 
-# Call the function
+# Call the function and clear function arguments
 jal x1, ARRAY_SUM
+add x1, x0, x0
+add x13, x0, x0
+add x12, x0, x0
 
 # Load the results back into the local registers 
-add x20, x12, x0
+add x20, x10, x0
+add x10, x0, x0
 
 # Return 0
+add x20, x0, x0
+add x19, x0, x0
+add x18, x0, x0
+add x5, x0, x0
 beq x0, x0, END
 
 # Name the function call
+##########################################
+# Procedure Name: ARRAY_SUM
+# Pre-conditions: 
+# x12 contains the base address of array in main
+# x13 contains a copy of the length (passed by value)
+# Post-conditions: x1 contains the return address
+#
+# This procedure swaps the values pointed to 
+# by x12 and x13 in the Data Memory
+##########################################
 ARRAY_SUM:
 
-add x21, x0, x0
-add x22, x0, x0
+add x21, x0, x0		# x21 is the sum
+add x22, x0, x0		# x22 is i
 
 BEGIN_LOOP:
-beq x22, x11, END_LOOP
+beq x22, x13, END_LOOP
 slli x6, x22, 2
-add x7, x10, x6
+add x7, x12, x6
 lw x28, 0(x7)
 add x21, x21, x28
 addi x22, x22, 1
@@ -71,9 +91,14 @@ beq x0, x0, BEGIN_LOOP
 END_LOOP:
 
 # Return result
-add x12, x21, x0
+add x10, x21, x0
 
-# Go back to main
+# Clear local variables and go back to main
+add x28, x0, x0
+add x7, x0, x0
+add x6, x0, x0
+add x22, x0, x0
+add x21, x0, x0
 jalr x0, x1, 0
 
 # Terminate the program

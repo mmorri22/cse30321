@@ -18,6 +18,8 @@
 # For simplicity, store B at 0x7fff1a18 for pass by reference
 #
 # You are permitted to use labels in this problem
+#
+# Ensure all garbage is properly collected at the end of the program.
 
 # Starter Code
 MAIN:
@@ -27,35 +29,57 @@ addi x19, x0, 17
 
 # Write the Solution Here
 # 1) Use the function argument registers to pass by value
-lui x10, 0x7fff1
-lui x11, 0x7fff1
-addi x10, x10, 0xa10
-addi x11, x11, 0xa18
-sw x18, 0(x10)
-sw x19, 0(x11)
+lui x5, 0x7fff1
+addi x12, x5, 0xa10
+addi x13, x5, 0xa18
+sw x18, 0(x12)
+sw x19, 0(x13)
 
-# Call the function
+# Call the function SWAP_FUNC and then clear x1
 jal x1, SWAP_FUNC
+add x1, x0, x0
 
 # Load the results back into the local registers 
-lw x18, 0(x10)
-lw x19, 0(x11)
+lw x18, 0(x12)
+lw x19, 0(x13)
 
-# Return 0
+# Free the function arguments for the function - now out of scope
+add x13, x0, x0
+add x12, x0, x0
+
+# Clear remaining variables and Return 0
+add x13, x0, x0
+add x12, x0, x0
+add x19, x0, x0
+add x18, x0, x0 
 beq x0, x0, END
 
 # Name the function call
+##########################################
+# Procedure Name: SWAP_FUNC
+# Pre-conditions: 
+# x12 contains &A from MAIN
+# x13 contains &B from MAIN
+# Post-conditions: x1 contains the return address
+#
+# This procedure swaps the values pointed to 
+# by x12 and x13 in the Data Memory
+##########################################
 SWAP_FUNC:
 
 # int temp = *A;
-lw x5, 0(x10)
+lw x5, 0(x12)
 
 # *A = *B;
-lw x6, 0(x11)
-sw x6, 0(x10)
+lw x6, 0(x13)
+sw x6, 0(x12)
 
 # *B = temp;
-sw x5, 0(x11)
+sw x5, 0(x13)
+
+# Clear temp registers in function call
+add x6, x0, x0
+add x5, x0, x0
 
 # Jump and link back to main
 jalr x0, x1, 0

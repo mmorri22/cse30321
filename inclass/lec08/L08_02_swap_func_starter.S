@@ -18,6 +18,8 @@
 # For simplicity, store B at 0x7fff1a18 for pass by reference
 #
 # You are permitted to use labels in this problem
+#
+# Ensure all garbage is properly collected at the end of the program.
 
 # Starter Code
 MAIN:
@@ -29,16 +31,29 @@ addi x19, x0, 17
 # 1) Use the function argument registers to pass by value
 
 
-# Call the function - SWAP_FUNC
+# Call the function SWAP_FUNC and then clear x1
 
 
 # Load the results back into the local registers 
 
 
-# Return 0
+# Free the function arguments for the function - now out of scope
+
+
+# Clear remaining variables and Return 0
 
 
 # Name the function call
+##########################################
+# Procedure Name: SWAP_FUNC
+# Pre-conditions: 
+# x12 contains &A from MAIN
+# x13 contains &B from MAIN
+# Post-conditions: x1 contains the return address
+#
+# This procedure swaps the values pointed to 
+# by x12 and x13 in the Data Memory
+##########################################
 
 
 # int temp = *A;
@@ -48,6 +63,9 @@ addi x19, x0, 17
 
 
 # *B = temp;
+
+
+# Clear temp registers in function call
 
 
 # Jump and link back to main

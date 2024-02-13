@@ -163,7 +163,14 @@ beq x0, x0, END
 
 
 # Step 3 - Allocate the memory for the sllist struct
-# Note: Input is in x12 from MAIN
+##########################################
+# Procedure Name: CALLOC_SLLIST
+# Pre-conditions: x12 contains the base address of an sll_node
+# Post-conditions: x1 contains the return address of the calling procedure
+#
+# This procedure clears 96 bits (12 bytes) of memory 
+# to be allocated to a sll_node
+##########################################
 CALLOC_SLLIST:
 
 # 3-1 - calloc overwrites the memory at that location with 0
@@ -178,6 +185,14 @@ jalr x0, x1, 0
 
 
 # Step 5 - Free the sllist Procedure
+##########################################
+# Procedure Name: FREE_SLLIST
+# Pre-conditions: x12 contains the base address of an sll_node
+# Post-conditions: 
+#
+# This procedure clears 96 bits (12 bytes) of memory 
+# previously allocated to a sll_node
+##########################################
 FREE_SLLIST:
 
 # 5-1 Must clear the memory pointed to by x12

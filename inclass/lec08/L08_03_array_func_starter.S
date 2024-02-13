@@ -18,6 +18,8 @@
 # 
 # In main, array is in x18 and points to 0x7fff1a10, array_len is in x19, and result_sum is in x20. 
 # In array_sum, sum is in x21 and i is in x22.
+#
+# Ensure all garbage is properly collected at the end of the program.
 
 # Starter Code
 MAIN:
@@ -35,7 +37,7 @@ addi x18, x5, 0xa10
 # 4. Put in function inputs
 
 
-# 5. Call the function
+# 5. Call the function and clear function arguments
 
 
 # 6. Load the results back into the local registers 
@@ -45,6 +47,14 @@ addi x18, x5, 0xa10
 
 
 # 10. Name the function call
+##########################################
+# Procedure Name: ARRAY_SUM
+# Pre-conditions: x12 contains the base address of an sll_node
+# Post-conditions: 
+#
+# This procedure clears 96 bits (12 bytes) of memory 
+# previously allocated to a sll_node
+##########################################
 ARRAY_SUM:
 
 # 11. Set the values of x21 and x22 to 0
@@ -60,7 +70,7 @@ END_LOOP:
 # 14. Return result
 
 
-# 15. Go back to main
+# 15. Clear local variables and go back to main
 
 
 # 16. Terminate the program
