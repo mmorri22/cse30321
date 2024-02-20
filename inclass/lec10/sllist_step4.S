@@ -41,6 +41,7 @@ MAIN:
 # Step 1 - x18 points to address 0x051a6110
 lui x5, 0x051a6
 addi x18, x5, 0x110
+add x5, x0, x0
 
 # Step 2 - Call the function calloc for the sllist struct
 # 2-1 - Must pass a *copy* of the pointer to the function. Use Function arguments (leave a0, a1)
@@ -100,7 +101,8 @@ addi x19, x19, 1      # ++i;
 beq x0, x0, BEGIN_FOR # Go back to the beginning of the loop
 
 END_FOR:
-
+add x6, x0, x0
+add x5, x0, x0
 
 # Step 4 - Free the sllist struct main call
 add x12, x18, x0    # Pointer to the_list is copied to x12
