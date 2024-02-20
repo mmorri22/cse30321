@@ -38,6 +38,7 @@ MAIN:
 # Step 1 - x18 points to address 0x051a6110
 lui x5, 0x051a6
 addi x18, x5, 0x110
+add x5, x0, x0
 
 # Step 2 - Call the function calloc for the sllist struct
 # 2-1 - Must pass a *copy* of the pointer to the function. Use Function arguments (leave a0, a1)
@@ -56,7 +57,6 @@ add x12, x0, x0    # Empty x12
 
 # Step 0 - Return 0
 add x18, x0, x0     # x18 is no longer pointing to the memory
-add x5, x0, x0     ############# <-------- FIX 3 - Set temp x5 to 0 to return 0;
 beq x0, x0, END
 
 
