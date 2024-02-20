@@ -74,8 +74,8 @@ CALLOC_SLLIST:
 # 3-1 - calloc overwrites the memory at that location with 0
 # Note - Problem says every 96 bits must be cleared, which is 12 bytes
 sw x0, 0(x12)   # Clears bytes 0-3
-sw x0, 4(x12)   # Clears bytes 4-6
-sw x0, 8(x12)   # Clears bytes 7-9
+sw x0, 4(x12)   # Clears bytes 4-7
+sw x0, 8(x12)   # Clears bytes 8-11
 
 # 3-2 Jump and link back to main
 jalr x0, x1, 0
@@ -95,8 +95,8 @@ FREE_SLLIST:
 
 # 5-1 Must clear the memory pointed to by x12
 sw x0, 0(x12)   # Clears bytes 0-3
-sw x0, 4(x12)   # Clears bytes 4-6
-sw x0, 8(x12)   # Clears bytes 7-9
+sw x0, 4(x12)   # Clears bytes 4-7
+sw x0, 8(x12)   # Clears bytes 8-11
 
 # 5-2 Jump and link back to main
 jalr x0, x1, 0
