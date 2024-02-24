@@ -58,7 +58,8 @@ void delete_node( dllist* the_list, int delete_val){
             free( curr_ptr );
         }
         
-        curr_ptr = curr_ptr->next_node;
+        if( curr_ptr != NULL )
+            curr_ptr = curr_ptr->next_node;
     }
     
 }
@@ -69,10 +70,12 @@ int main(){
     
     // Added
     fprintf(stdout, "Register - the_list: %p\n", &the_list);
+    fprintf(stdout, "DM - Base Address  : %p\n", the_list);
     fprintf(stdout, "DM - the_list      : %p\n", &the_list->head_ptr);
     fprintf(stdout, "DM - the_list head : %p\n", &the_list->tail_ptr);
     fprintf(stdout, "--------------------------------------------\n");
 
+    /* Can be a deliberate compiler error on some Operating Systems */
     for(int y = 3; y >= 0; --y){
         if(the_list->head_ptr == NULL){
             dll_node* made_node = ( dll_node* )calloc( 1, sizeof(dll_node) );
@@ -97,7 +100,11 @@ int main(){
 	fprintf( stdout, "Before deletion:\n" );
 	print_list( the_list );
     
-    int delete_val = 2;
+    /* Only run with one of the next four lines. Comment out the other 3 */
+    int delete_val = 3; // Test for deletion of head node
+    // int delete_val = 3; // Test for deletion of tail node
+    // int delete_val = 2; // Test for deletion of middle node
+    // int delete_val = -1; // Test for deletion with no seg fault
     delete_node( the_list, delete_val );
 	
     /****** Added - Print the addresses **********/
