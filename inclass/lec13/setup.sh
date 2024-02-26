@@ -1,0 +1,22 @@
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/Makefile
+make initialize
+mkdir include src in_test
+cd include
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/include/btree.h 
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/include/btree_sol.h   
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/include/btree_node.h
+cd ../src
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/ 
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree3_int_test.cpp 
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree3_str_test.cpp   
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree_adv_int_test.cpp
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree_adv_str_test.cpp
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree_int_O4_test.cpp  
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree_int_O3_test.cpp  
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/src/btree_int_O5_test.cpp
+cd ../in_test
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/in_test/random1000.txt
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/in_test/wordle_allowed.txt
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec13/in_test/wordle_nyt_answers.txt
+cd ..
+rm setup.sh
