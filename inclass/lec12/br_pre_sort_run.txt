@@ -1,0 +1,2 @@
+Total time = 5.8636 seconds
+sum = 314931600000
