@@ -1,16 +1,19 @@
 #include <time.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 2097152
 #define NUM_LOOPS 1000
 
 int  func( int count, long unsigned int  value ){
     return count += value;
 }
 
-int main()
+int main(const int argc, const char* argv[])
 {
-    int arr[ARRAY_SIZE] = {};
+
+	int ARRAY_SIZE = atoi(argv[1]);
+
+    int* arr = (int *)calloc(ARRAY_SIZE, sizeof(int));
 	
 	int num_times = 0;
 	
@@ -47,6 +50,8 @@ int main()
     fprintf(stdout, "Clocks for all loops: %ld\n", end_t - start_t );
     fprintf(stdout, "Time for all loops  : %.2lf ms\n", total_t  * 1000 );
     fprintf(stdout, "--------------------------------\n");
+
+	free(arr);
 
     return 0;
 }

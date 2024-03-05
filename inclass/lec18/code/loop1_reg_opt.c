@@ -1,7 +1,7 @@
 #include <time.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 2097152
+#define ARRAY_SIZE 16384
 #define NUM_LOOPS 1000
 
 int  func( int count, long unsigned int  value ){
@@ -21,16 +21,21 @@ int main()
 	for( num_times = 0; num_times < NUM_LOOPS; ++num_times ){
 	
 		sum = 0;
-		
-		int count;
-		for(count = 0; count < 5; ++count){
+	
+		long unsigned int  idx;
+		for(idx = 0; idx < ARRAY_SIZE; ++idx){
 			
-			long unsigned int idx;
-			for( idx = 0; idx < ARRAY_SIZE; ++idx ){
+			int arr_idx = arr[idx];
+			
+			int count;
+			for( count = 0; count < 5; ++count ){
 				
-				arr[idx] = func( count, arr[idx] );
-				sum += arr[idx];
+				arr_idx = func( count, arr_idx );
+				sum += arr_idx;
+				
 			}
+			
+			arr[idx] = arr_idx;
 		}
 	
 	}

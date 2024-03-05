@@ -1,7 +1,7 @@
 #include <time.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 2097152
+#define ARRAY_SIZE 16384
 #define NUM_LOOPS 1000
 
 int  func( int count, long unsigned int  value ){

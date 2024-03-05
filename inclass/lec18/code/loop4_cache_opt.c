@@ -1,7 +1,8 @@
 #include <time.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-#define ARRAY_SIZE 2097152
+#define ARRAY_SIZE 1048576
 #define NUM_LOOPS 1000
 
 int  func( int count, long unsigned int  value ){
@@ -10,7 +11,7 @@ int  func( int count, long unsigned int  value ){
 
 int main()
 {
-    int arr[ARRAY_SIZE] = {};
+    int* arr = (int *)calloc(ARRAY_SIZE, sizeof(int));
 	
 	int num_times = 0;
 	
@@ -21,15 +22,16 @@ int main()
 	for( num_times = 0; num_times < NUM_LOOPS; ++num_times ){
 	
 		sum = 0;
-		
-		int count;
-		for(count = 0; count < 5; ++count){
+	
+		long unsigned int  idx;
+		for(idx = 0; idx < ARRAY_SIZE; ++idx){
 			
-			long unsigned int idx;
-			for( idx = 0; idx < ARRAY_SIZE; ++idx ){
+			int count;
+			for( count = 0; count < 5; ++count ){
 				
 				arr[idx] = func( count, arr[idx] );
 				sum += arr[idx];
+				
 			}
 		}
 	
@@ -47,6 +49,8 @@ int main()
     fprintf(stdout, "Clocks for all loops: %ld\n", end_t - start_t );
     fprintf(stdout, "Time for all loops  : %.2lf ms\n", total_t  * 1000 );
     fprintf(stdout, "--------------------------------\n");
+
+	free(arr);
 
     return 0;
 }
