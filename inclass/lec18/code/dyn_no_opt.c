@@ -8,10 +8,11 @@ int  func( int count, long unsigned int  value ){
     return count += value;
 }
 
-int main(const int argc, const char* argv[])
+int main( )
 {
-
-	int ARRAY_SIZE = atoi(argv[1]);
+	int ARRAY_SIZE;
+	fprintf(stdout, "Enter the size of the array: ");
+	fscanf(stdin, "%d", &ARRAY_SIZE );
 
     int* arr = (int *)calloc(ARRAY_SIZE, sizeof(int));
 	
@@ -40,16 +41,16 @@ int main(const int argc, const char* argv[])
     
     clock_t end_t = clock();
     
-    double total_t = (double)(end_t - start_t) / (double)(CLOCKS_PER_SEC);
+    double total_t = (double)(end_t - start_t) / (double)(CLOCKS_PER_SEC) * 1000;
     
-    fprintf(stdout, "--------------------------------\n");
+    fprintf( stdout, "--------------------------------\n");
 	fprintf( stdout, "Start = %ld, End = %ld\n", start_t, end_t );
-    fprintf( stdout, "Array Size = %d\n", ARRAY_SIZE);
-	fprintf( stdout, "Number of loops = %d\n", NUM_LOOPS);
-	fprintf( stdout, "Clocks Per Second = %ld\n", CLOCKS_PER_SEC );
-    fprintf(stdout, "Clocks for all loops: %ld\n", end_t - start_t );
-    fprintf(stdout, "Time for all loops  : %.2lf ms\n", total_t  * 1000 );
-    fprintf(stdout, "--------------------------------\n");
+    fprintf( stdout, "Array Size           : %d\n", ARRAY_SIZE);
+	fprintf( stdout, "Number of loops      : %d\n", NUM_LOOPS);
+	fprintf( stdout, "Clocks Per Second    : %ld\n", CLOCKS_PER_SEC );
+    fprintf( stdout, "Clocks for all loops : %ld\n", end_t - start_t );
+    fprintf( stdout, "Average time per loop: %.2lf ms\n", total_t  * 1000 / NUM_LOOPS );
+    fprintf( stdout, "--------------------------------\n");
 
 	free(arr);
 

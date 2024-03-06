@@ -40,14 +40,14 @@ int main()
     
     double total_t = (double)(end_t - start_t) / (double)(CLOCKS_PER_SEC);
     
-    fprintf(stdout, "--------------------------------\n");
+    fprintf( stdout, "--------------------------------\n");
 	fprintf( stdout, "Start = %ld, End = %ld\n", start_t, end_t );
-    fprintf( stdout, "Array Size = %d\n", ARRAY_SIZE);
-	fprintf( stdout, "Number of loops = %d\n", NUM_LOOPS);
-	fprintf( stdout, "Clocks Per Second = %ld\n", CLOCKS_PER_SEC );
-    fprintf(stdout, "Clocks for all loops: %ld\n", end_t - start_t );
-    fprintf(stdout, "Time for all loops  : %.2lf ms\n", total_t  * 1000 );
-    fprintf(stdout, "--------------------------------\n");
+    fprintf( stdout, "Array Size           : %d\n", ARRAY_SIZE);
+	fprintf( stdout, "Number of loops      : %d\n", NUM_LOOPS);
+	fprintf( stdout, "Clocks Per Second    : %ld\n", CLOCKS_PER_SEC );
+    fprintf( stdout, "Clocks for all loops : %ld\n", end_t - start_t );
+    fprintf( stdout, "Average time per loop: %.2lf ms\n", total_t  * 1000 / NUM_LOOPS );
+    fprintf( stdout, "--------------------------------\n");
 
     return 0;
 }
