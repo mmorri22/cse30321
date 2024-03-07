@@ -19,8 +19,6 @@ int main()
     clock_t start_t = clock();
 	
 	for( num_times = 0; num_times < NUM_LOOPS; ++num_times ){
-	
-		sum = 0;
 		
 		int count;
 		for(count = 0; count < 5; ++count){
@@ -45,7 +43,7 @@ int main()
 	fprintf( stdout, "Number of loops      : %d\n", NUM_LOOPS);
 	fprintf( stdout, "Clocks Per Second    : %ld\n", CLOCKS_PER_SEC );
     fprintf( stdout, "Clocks for all loops : %ld\n", end_t - start_t );
-    fprintf( stdout, "Average time per loop: %.2lf ms\n", total_t  * 1000 / NUM_LOOPS );
+    fprintf( stdout, "Average time per loop: %.6lf ms\n", total_t / NUM_LOOPS );
     fprintf( stdout, "--------------------------------\n");
 
     return 0;

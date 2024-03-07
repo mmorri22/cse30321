@@ -1,5 +1,10 @@
 // File Name: hw06_arr.S
 // Author: Aaron Dingler (modified by Matthew Morrison 3/7/24)
+//  based on simple-lw-sw-ia.S, (C) 2021 by Pavel Pisa
+//      e-mail:   pisa@cmp.felk.cvut.cz
+//      homepage: http://cmp.felk.cvut.cz/~pisa
+//      work:     http://www.pikron.com/
+//      license:  public domain
 
 #pragma qtrvsim show registers
 #pragma qtrvsim show memory
@@ -11,8 +16,8 @@
 
 _start:
 
-	la x5, arr		// Pseudo instruction used to indicate the starting address of array
-	la x6, arr_size	// Pseudo instruction used to indicate the array size
+	la x5, arr		//starting address of array
+	la x6, arr_size
 	lw x6, 0(x6)
 
 	li x7, 0		//loop index, i = 0

@@ -58,6 +58,15 @@ dyn_cache_opt:
 dyn_reg_opt:
 	$(CC) dyn_reg_opt.c -o dyn_reg_opt
 
+dyn_loop_unroll:
+	$(CC) dyn_loop_unroll.c -o dyn_loop_unroll
+
+dyn_inline:
+	$(CC) dyn_inline.c -o dyn_inline
+
+dyn_macro:
+	$(CC) dyn_macro.c -o dyn_macro
+
 # Executable Names
 loop1: loop1_no_opt loop1_cache_opt loop1_reg_opt
 
@@ -69,7 +78,15 @@ dyn: dyn_no_opt dyn_cache_opt dyn_reg_opt
 	./dyn_reg_opt
 	rm dyn_no_opt dyn_cache_opt dyn_reg_opt
 
-executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt
+dyn_all: dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
+	./dyn_no_opt
+	./dyn_cache_opt
+	./dyn_reg_opt
+	./dyn_loop_unroll
+	./dyn_macro
+	rm dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
+
+executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro
 
 # Make all
 all: $(executables)
