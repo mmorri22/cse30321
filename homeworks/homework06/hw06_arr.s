@@ -6,6 +6,9 @@
 //      work:     http://www.pikron.com/
 //      license:  public domain
 
+// File Name: hw06_arr.S
+// Author: Aaron Dingler (modified by Matthew Morrison 3/7/24)
+
 #pragma qtrvsim show registers
 #pragma qtrvsim show memory
 
@@ -16,8 +19,8 @@
 
 _start:
 
-	la x5, arr		//starting address of array
-	la x6, arr_size
+	la x5, arr		// Pseudo instruction used to indicate the starting address of array
+	la x6, arr_size	// Pseudo instruction used to indicate the array size
 	lw x6, 0(x6)
 
 	li x7, 0		//loop index, i = 0
