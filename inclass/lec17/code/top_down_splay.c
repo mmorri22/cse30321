@@ -1,7 +1,7 @@
 /**************************************
  * File Name: top_down_splay.c
  * Author: Primary - Daniel Sleator, March 1992
- *         Modifier - Matthew Morrison, February 2023
+ *         Modified - dsleator and Matthew Morrison, February 2023
  * 
  * This code is part of the public domain
  *
@@ -16,19 +16,19 @@
   and papers [1,2,3,4,5].
 
   The code here is adapted from simple top-down splay, at the bottom of
-  page 669 of [3].  The chief modification here is that the splay operation works even if the
-  item being splayed is not in the tree, and even if the tree root of the
-  tree is NULL.  
+  page 669 of [3].  The chief modification here is that the splay operation 
+  works even if the   item being splayed is not in the tree, and even if the 
+  tree root of the tree is NULL.  
 
   So the line:
 
-                              t = splay(i, t);
+                              t = splay(insert_val, t);
 
-  causes it to search for item with key i in the tree rooted at t.  If it's
-  there, it is splayed to the root.  If it isn't there, then the node put
+  causes it to search for item with key insert_val in the tree rooted at t.  
+  If it's   there, it is splayed to the root.  If it isn't there, then the node put
   at the root is the last one before NULL that would have been reached in a
-  normal binary search for i.  (It's a neighbor of i in the tree.)  This
-  allows many other operations to be easily implemented, as shown below.
+  normal binary search for insert_val.  (It's a neighbor of insert_val in the tree.)  
+  This   allows many other operations to be easily implemented, as shown below.
 
   [1] "Fundamentals of data structures in C", Horowitz, Sahni,
        and Anderson-Freed, Computer Science Press, pp 542-547.
@@ -53,57 +53,58 @@ typedef struct Tree {
     int item;
 }Tree;
 
-Tree* splay(int insert_val, Tree* t) {
+Tree* splay(int insert_val, Tree* to_splay) {
 
     /* Simple top down splay, not requiring i to be in the tree t.  */
     /* What it does is described above.                             */
-    Tree N, *l, *r, *y;
+    Tree New; 
+    Tree *left_tree, *right_tree, *y;
 
-    if (t == NULL) 
-        return t;
+    if (to_splay == NULL) 
+        return to_splay;
 
-    N.left = N.right = NULL;
-    l = r = &N;
+    New.left = New.right = NULL;
+    left_tree = right_tree = &New;
 
     while(1) {
 
-        if (insert_val < t->item) {
+        if (insert_val < to_splay->item) {
 
-            if (t->left == NULL) 
+            if (to_splay->left == NULL) 
                 break;
 
-            if (insert_val < t->left->item) {
-                y = t->left;                           /* rotate right */
-                t->left = y->right;
-                y->right = t;
-                t = y;
-                if (t->left == NULL) 
+            if (insert_val < to_splay->left->item) {
+                y = to_splay->left;                           /* rotate right */
+                to_splay->left = y->right;
+                y->right = to_splay;
+                to_splay = y;
+                if (to_splay->left == NULL) 
                     break;
             }
             
-            r->left = t;                               /* link right */
-            r = t;
-            t = t->left;
+            right_tree->left = to_splay;                               /* link right */
+            right_tree = to_splay;
+            to_splay = to_splay->left;
         } 
-        else if (insert_val > t->item) {
+        else if (insert_val > to_splay->item) {
 
-            if (t->right == NULL) 
+            if (to_splay->right == NULL) 
                 break;
 
-            if (insert_val > t->right->item) {
-                y = t->right;                          /* rotate left */
-                t->right = y->left;
-                y->left = t;
-                t = y;
+            if (insert_val > to_splay->right->item) {
+                y = to_splay->right;                          /* rotate left */
+                to_splay->right = y->left;
+                y->left = to_splay;
+                to_splay = y;
 
-                if (t->right == NULL) 
+                if (to_splay->right == NULL) 
                     break;
             }
 
             /* Link Left */
-            l->right = t;
-            l = t;
-            t = t->right;
+            left_tree->right = to_splay;
+            left_tree = to_splay;
+            to_splay = to_splay->right;
         } 
         else {
             // We found the item
@@ -112,12 +113,12 @@ Tree* splay(int insert_val, Tree* t) {
     }
 
     /* Assemble the new Splay tree */
-    l->right = t->left;
-    r->left = t->right;
-    t->left = N.right;
-    t->right = N.left;
+    left_tree->right = to_splay->left;
+    right_tree->left = to_splay->right;
+    to_splay->left = New.right;
+    to_splay->right = New.left;
 
-    return t;
+    return to_splay;
 }
 
 /* Matt, here is how bob sedgewick would have written this.          */
@@ -179,8 +180,9 @@ Tree* insert(int insert_val, Tree* t) {
         return new;
     } 
     
-    else { /* We get here if it's already in the Tree*/
-             /* Don't add it again                      */
+    /* We get here if it's already in the Tree*/
+    /* Don't add it again                      */
+    else { 
         free(new);
         return t;
     }
