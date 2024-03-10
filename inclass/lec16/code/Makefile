@@ -2,7 +2,7 @@
 # Author: Prof. Matthew Morrison
 # E-mail: matt.morrison@nd.edu
 #
-# This is the Makefile for the Lecture 10 Example.
+# This is the Makefile for the Lecture 16 Example.
 
 # gcc is for the compiler for C
 CC := gcc
@@ -89,16 +89,16 @@ dyn_all: dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 	./dyn_macro
 	rm dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 
-dllist:
-	$(CC) dllist.c -o dllist
+class_example:
+	$(CC) class_example.c -o class_example
 
-dllist_timed:
-	$(CC) dllist_timed.c -o dllist_timed
+class_example_mod:
+	$(CC) class_example_mod.c -o class_example_mod
 
-rbt_timed:
-	$(PP) -std=c++2a rbt_timed.cpp -o rbt_timed
+class_example_sol:
+	$(CC) class_example_sol.c -o class_example_sol
 
-executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro dllist dllist_timed rbt_timed
+executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro class_example class_example_sol class_example_mod
 
 # Make all
 all: $(executables)
