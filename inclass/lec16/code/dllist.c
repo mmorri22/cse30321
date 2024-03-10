@@ -230,8 +230,10 @@ void delete_node( dllist* the_list, int delete_num ){
 
 int main( const int argc, const char* argv[] ){
 
-	if( argc != 2 )
-		exit(-1);
+	if( argc != 2 ){
+		fprintf(stdout, "Error: ./dllist [num_items]");
+		return EXIT_FAILURE;
+	}
 
 	int num_items = atoi(argv[1]);
 

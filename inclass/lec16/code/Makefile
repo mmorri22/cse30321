@@ -6,6 +6,7 @@
 
 # gcc is for the compiler for C
 CC := gcc
+PP := g++
 
 # Trace Executable and Run
 loop1_no_opt:
@@ -43,7 +44,7 @@ loop3:
 	$(CC) loop3.c -o loop3
 	./loop3
 	$(info ************ This segmentation fault is deliberate ************)
-	rm loop3
+	rm -rf loop3
 
 
 # Trace Executable and Run
@@ -69,8 +70,10 @@ dyn_macro:
 
 # Executable Names
 loop1: loop1_no_opt loop1_cache_opt loop1_reg_opt
+	rm -rf loop1_no_opt loop1_cache_opt loop1_reg_opt
 
 loop2: loop2_no_opt loop2_cache_opt loop2_reg_opt
+	rm -rf loop1_no_opt loop1_cache_opt loop1_reg_opt
 
 dyn: dyn_no_opt dyn_cache_opt dyn_reg_opt
 	./dyn_no_opt
@@ -86,7 +89,16 @@ dyn_all: dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 	./dyn_macro
 	rm dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 
-executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro
+dllist:
+	$(CC) dllist.c -o dllist
+
+dllist_timed:
+	$(CC) dllist_timed.c -o dllist_timed
+
+rbt_timed:
+	$(PP) -std=c++2a rbt_timed.cpp -o rbt_timed
+
+executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro dllist dllist_timed rbt_timed
 
 # Make all
 all: $(executables)
