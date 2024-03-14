@@ -1,23 +1,23 @@
 # Author: Prof. Matthew Morrison
 # E-mail: matt.morrison@nd.edu
 #
-# This is the Makefile for the Lecture 22 Example.
+# This is the Makefile for the Homework 09.
 
 CC := gcc
 CFLAGS := -std=c11 -Wall
 
-SIMD_OBJECTS := test_simd.o simd.o
+part4_OBJECTS := test_part4.o part4.o
 
-simd: $(SIMD_OBJECTS)
-	$(CC) $(CFLAGS) -o simd $(SIMD_OBJECTS)
+part4: $(part4_OBJECTS)
+	$(CC) $(CFLAGS) -o part4 $(part4_OBJECTS)
 
-test_simd.o: simd.c simd.h
-	$(CC) $(CFLAGS) -c test_simd.c
+test_part4.o: part4.c part4.h
+	$(CC) $(CFLAGS) -c test_part4.c
 
-simd.o: simd.c simd.h
-	$(CC) $(CFLAGS) -c simd.c
+part4.o: part4.c part4.h
+	$(CC) $(CFLAGS) -c part4.c
 
-executables := simd
+executables := part4
 
 all: $(executables)
 

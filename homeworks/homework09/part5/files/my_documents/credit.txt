@@ -1,5 +1,3 @@
-Site designed by cs162 staff.
-http server modified from [cs162 hw4](https://cs162.eecs.berkeley.edu/static/hw/hw4.pdf)
+Site designed by cse 30321 staff.
+http server modified from [cse 30321 hw09](https://github.com/mmorri22/cse30321/blob/main/homeworks/homework09)
 [libbmp](https://github.com/marc-q/libbmp)
-
-Content in this folder introduced by alice.
