@@ -1,3 +1,0 @@
-Site designed by cse 30321 staff.
-http server modified from [cse 30321 hw09](https://github.com/mmorri22/cse30321/blob/main/homeworks/homework09)
-[libbmp](https://github.com/marc-q/libbmp)
