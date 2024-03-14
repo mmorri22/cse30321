@@ -15,7 +15,7 @@
 int main( const int argc, const char* argv[] ) {
 
 	if (argc != 2 ){
-		fprint(stderr, "Must have ./simd [num_tests]\n");
+		fprintf(stderr, "Must have ./simd [num_tests]\n");
 		return EXIT_FAILURE;
 	}
 	
