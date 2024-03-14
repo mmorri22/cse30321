@@ -37,7 +37,7 @@ wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework09/part5/files/my_documents/style.css
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework09/part5/files/my_documents/theslowwinter.pdf
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework09/part5/files/my_documents/wholesome_facts.txt
-cd ../libbmp
+cd ../../libbmp
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework09/part5/libbmp/libbmp.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/homeworks/homework09/part5/libbmp/libbmp.h
 cd ../libhttp
