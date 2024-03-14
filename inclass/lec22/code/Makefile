@@ -1,8 +1,7 @@
-#!/bin/bash
 # Author: Prof. Matthew Morrison
 # E-mail: matt.morrison@nd.edu
 #
-# This is the Makefile for the Lecture 16 Example.
+# This is the Makefile for the Lecture 22 Example.
 
 # gcc is for the compiler for C
 CC := gcc
