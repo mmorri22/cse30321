@@ -28,7 +28,7 @@ long long int unrolled_sum(int vals[NUM_ELEMENTS]) {
 
 			if(vals[i + 2] >= 128) 
 				sum += vals[i + 2];
-			
+
 			if(vals[i + 3] >= 128) 
 				sum += vals[i + 3];
 		}
@@ -62,9 +62,10 @@ long long int simd_sum(int vals[NUM_ELEMENTS]) {
 }
 
 long long int simd_unrolled_sum(int vals[NUM_ELEMENTS]) {
-	clock_t start = clock();
+
 	__m128i _127 = _mm_set1_epi32(127);
 	long long int result = 0;
+
 	for(unsigned int w = 0; w < OUTER_ITERATIONS; w++) {
 		/* COPY AND PASTE YOUR sum_simd() HERE */
 		/* MODIFY IT BY UNROLLING IT */
@@ -72,7 +73,6 @@ long long int simd_unrolled_sum(int vals[NUM_ELEMENTS]) {
 		/* You'll need 1 or maybe 2 tail cases here. */
 
 	}
-	clock_t end = clock();
-	printf("Time taken: %Lf s\n", (long double)(end - start) / CLOCKS_PER_SEC);
+
 	return result;
 }

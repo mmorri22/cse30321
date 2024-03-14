@@ -1,6 +1,3 @@
-# Author: Prof. Matthew Morrison
-# E-mail: matt.morrison@nd.edu
-#
 # This is the Makefile for the Homework 09.
 
 CC := gcc
