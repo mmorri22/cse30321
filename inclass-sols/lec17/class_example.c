@@ -5,19 +5,16 @@
 #define NUM_LOOPS 1000
 
 typedef struct example{
-	double double1;
-	double double2;
-	float float1;
 	int int1;
+	double double1;
+	float float1;
+	double double2;
 	int int2;
 }example;
 
-#define func( count, int1 ) \
-	count + int1
-
-/*int func( int count, int int1 ){
-    return count += int1;
-}*/
+int func( int count, example* the_arr, long unsigned int index ){
+    return count += the_arr[index].int1;
+}
 
 int main( const int argc, const char* argv[] ){
 
@@ -38,27 +35,16 @@ int main( const int argc, const char* argv[] ){
 			the_list[i].double2 = (double)(i+1);
 			the_list[i].int2 = i+1;
 		}
-
-		long unsigned int index;
-		for( index = 0; index < array_size; ++index ){	
-
-			int int1 = the_list[index].int1;
-			int int2 = the_list[index].int2;
-
-			int1 += func( 0, int1 );
-			sum += int2;
-
-			int1 += func( 1, int1 );
-			sum += int2;
-
-			int1 += func( 2, int1 );
-			sum += int2;
-
-			int1 += func( 3, int1 );
-			sum += int2;
-
-			the_list[index].int1 = int1;
-
+			
+		int test;
+		for(test = 0; test < 4; ++test){
+			
+			long unsigned int index;
+			for( index = 0; index < array_size; ++index ){
+				
+				the_list[index].int1 += func( test, the_list, index );
+				sum += the_list[index].int2;
+			}
 		}
 		
 		free( the_list );

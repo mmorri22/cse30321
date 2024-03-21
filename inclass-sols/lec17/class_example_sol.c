@@ -13,11 +13,7 @@ typedef struct example{
 }example;
 
 #define func( count, int1 ) \
-	count + int1
-
-/*int func( int count, int int1 ){
-    return count += int1;
-}*/
+    ( count + int1 )
 
 int main( const int argc, const char* argv[] ){
 
@@ -32,33 +28,28 @@ int main( const int argc, const char* argv[] ){
 		
 		int i;
 		for(i = 0; i < array_size; ++i){
-			the_list[i].int1 = i;
 			the_list[i].double1 = (double)i;
-			the_list[i].float1 = (float)i;
 			the_list[i].double2 = (double)(i+1);
+			the_list[i].float1 = (float)i;
+			the_list[i].int1 = i;
 			the_list[i].int2 = i+1;
 		}
-
+			
 		long unsigned int index;
-		for( index = 0; index < array_size; ++index ){	
+		for( index = 0; index < array_size; ++index ){
+
+			int test;
 
 			int int1 = the_list[index].int1;
 			int int2 = the_list[index].int2;
 
 			int1 += func( 0, int1 );
-			sum += int2;
-
 			int1 += func( 1, int1 );
-			sum += int2;
-
 			int1 += func( 2, int1 );
-			sum += int2;
-
 			int1 += func( 3, int1 );
-			sum += int2;
+			sum += (4*int2);
 
 			the_list[index].int1 = int1;
-
 		}
 		
 		free( the_list );
