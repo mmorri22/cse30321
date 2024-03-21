@@ -8,6 +8,15 @@
 CC := gcc
 PP := g++
 
+class_example:
+	$(CC) class_example.c -o class_example
+
+class_example_mod:
+	$(CC) class_example_mod.c -o class_example_mod
+
+class_example_sol:
+	$(CC) class_example_sol.c -o class_example_sol
+
 dllist:
 	$(CC) dllist.c -o dllist
 
@@ -23,7 +32,7 @@ rbt_timed:
 priority_timed:
 	$(PP) -std=c++2a priority_timed.cpp -o priority_timed
 
-executables := dllist dllist_timed rbt_timed priority_timed top_down_splay
+executables := class_example class_example_sol class_example_mod dllist dllist_timed rbt_timed priority_timed top_down_splay
 
 # Make all
 all: $(executables)

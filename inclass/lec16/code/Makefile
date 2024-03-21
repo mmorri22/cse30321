@@ -89,16 +89,7 @@ dyn_all: dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 	./dyn_macro
 	rm dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_loop_unroll dyn_macro
 
-class_example:
-	$(CC) class_example.c -o class_example
-
-class_example_mod:
-	$(CC) class_example_mod.c -o class_example_mod
-
-class_example_sol:
-	$(CC) class_example_sol.c -o class_example_sol
-
-executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro class_example class_example_sol class_example_mod
+executables := loop1_no_opt loop1_cache_opt loop1_reg_opt loop2_no_opt loop2_cache_opt loop2_reg_opt loop3 dyn_no_opt dyn_cache_opt dyn_reg_opt dyn_inline dyn_loop_unroll dyn_macro
 
 # Make all
 all: $(executables)
