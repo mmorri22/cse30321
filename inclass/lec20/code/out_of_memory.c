@@ -4,7 +4,7 @@
 
 int main( const int argc, const char* argv[] ){
 
-    /* Remember the Year 2037 Problem - Why I must cast to unsigned int */
+    /* Remember the Year 2038 Problem - Why I must cast to unsigned int */
     srand( (unsigned int)time(0) );
 
     long unsigned int array_size = 1024 * 1024 * 1024;
@@ -23,7 +23,7 @@ int main( const int argc, const char* argv[] ){
             return EXIT_FAILURE;
         }
         else{
-            fprintf( stdout, "Allocated %ld bytes of memory!\n", total_bytes );
+            fprintf( stdout, "Allocated %ld bytes of memory at %p!\n", total_bytes, char_array );
         }
 
         // Whoops, forgot to free!
