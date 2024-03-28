@@ -10,9 +10,57 @@ import pathlib
 from IPython.display import display, display_png
 from subprocess import call
 
+call('echo "💾 Allocating Memory"', shell=True)
+os.system('rm -rf *')
+
+call('echo "📦 downloading xls-{xls_version}"', shell=True)
+os.system('curl --show-error -L https://github.com/proppy/xls/releases/download/{xls_version}/xls-{xls_version}-linux-x64.tar.gz | tar xzf - --strip-components=1')
+call('echo "🧪 setting up colab integration"', shell=True)
+os.system('python -m pip install --quiet --no-cache-dir --ignore-installed https://github.com/proppy/xls/releases/download/{xls_version}/xls_colab-0.0.0-py3-none-any.whl')
+os.system('python -m pip install logger')
+os.system('python -m pip install colabtools')
+import logger
+import xls.contrib.colab
+_ = xls.contrib.colab.register_dslx_magic()
+
+# Must verify xls_work_dir is created
+os.system('if test -d xls_work_dir; then echo "xls_work_dir exists"; else mkdir xls_work_dir;  fi')
+
+#@title  First Run Only #4 - OpenRoad Setup {run:"auto"}
+
+yosys_version = '0.38_93_g84116c9a3' #@param {type:"string"}
+openroad_version = '2.0_12381_g01bba3695' #@param {type:"string"}
+rules_hdl_version = '2eb050e80a5c42ac3ffdb7e70392d86a6896dfc7' #@param {type:"string"}
+
+call('echo "🛣️ installing openroad and friends"', shell=True)
+os.system('curl -L -O https://repo.anaconda.com/miniconda/Miniconda3-py310_24.1.2-0-Linux-x86_64.sh')
+os.system('bash Miniconda3-py310_24.1.2-0-Linux-x86_64.sh -b -p conda-env/')
+import pathlib
+conda_prefix_path = pathlib.Path('conda-env')
+CONDA_PREFIX = str(conda_prefix_path.resolve())
+%env CONDA_PREFIX={CONDA_PREFIX}
+os.system('conda-env/bin/conda install -yq -c "litex-hub" openroad={openroad_version} yosys={yosys_version}')
+
+
+#@title  First Run Only #5 - Organizing Access to PDKs {run:"auto"}
+
+os.system('gsutil cp gs://proppy-eda/pdk_info_asap7.zip .')
+os.system('gsutil cp gs://proppy-eda/pdk_info_sky130.zip .')
+
+os.system('unzip -q -o pdk_info_asap7.zip')
+os.system('unzip -q -o pdk_info_sky130.zip')
+
+call('echo "🧰 generating PDK metadata"', shell=True)
+os.system('curl --show-error -L  https://github.com/hdl/bazel_rules_hdl/archive/{rules_hdl_version}.tar.gz | tar xzf - --strip-components=1')
+os.system('curl -L -O https://github.com/protocolbuffers/protobuf/releases/download/v24.3/protoc-24.3-linux-x86_64.zip')
+os.system('unzip -q -o protoc-24.3-linux-x86_64.zip')
+os.system('{sys.executable} -m pip install protobuf')
+
+#@title  First Run Only #6 - ASAP7 PDK Organization Setup{run:"auto"}
+
 os.system('mkdir -p org_theopenroadproject_asap7sc7p5t_28/{LEF,techlef_misc} asap7/dependency_support/org_theopenroadproject_asap7_pdk_r1p7/')
-os.system('cp asap7/asap7sc7p5t_28_R_1x_220121a.lef org_theopenroadproject_asap7sc7p5t_28/LEF/')
-os.system('cp asap7/asap7_tech_1x_201209.lef org_theopenroadproject_asap7sc7p5t_28/techlef_misc/')
+os.system('cp asap7/asap7sc7p5t_28_R_1x_220121a.lef') org_theopenroadproject_asap7sc7p5t_28/LEF/')
+os.system('cp asap7/asap7_tech_1x_201209.lef') org_theopenroadproject_asap7sc7p5t_28/techlef_misc/')
 os.system('cp asap7/asap7_rvt_1x_SS.lib org_theopenroadproject_asap7sc7p5t_28/')
 os.system('cp asap7/tracks.tcl asap7/dependency_support/org_theopenroadproject_asap7_pdk_r1p7/')
 os.system('cp asap7/pdn_config.pdn asap7/dependency_support/org_theopenroadproject_asap7_pdk_r1p7/')
