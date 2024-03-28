@@ -10,7 +10,9 @@ import pathlib
 from IPython.display import display, display_png
 from subprocess import call
 
-os.system('mkdir -p org_theopenroadproject_asap7sc7p5t_28/{LEF,techlef_misc} asap7/dependency_support/org_theopenroadproject_asap7_pdk_r1p7/')
+os.system('mkdir -p org_theopenroadproject_asap7sc7p5t_28/LEF')
+os.system('mkdir -p org_theopenroadproject_asap7sc7p5t_28/techlef_misc')
+os.system('mkdir -p asap7/dependency_support/org_theopenroadproject_asap7_pdk_r1p7/')
 os.system('cp asap7/asap7sc7p5t_28_R_1x_220121a.lef org_theopenroadproject_asap7sc7p5t_28/LEF/')
 os.system('cp asap7/asap7_tech_1x_201209.lef org_theopenroadproject_asap7sc7p5t_28/techlef_misc/')
 os.system('cp asap7/asap7_rvt_1x_SS.lib org_theopenroadproject_asap7sc7p5t_28/')
