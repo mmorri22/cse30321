@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'VIZIXA+Leahy';
+    src: url('VIZIXALeahy-Regular.eot');
+    src: url('VIZIXALeahy-Regular.eot?#iefix') format('embedded-opentype'),
+        url('VIZIXALeahy-Regular.woff2') format('woff2'),
+        url('VIZIXALeahy-Regular.woff') format('woff'),
+        url('VIZIXALeahy-Regular.ttf') format('truetype'),
+        url('VIZIXALeahy-Regular.svg#VIZIXA+Leahy-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
