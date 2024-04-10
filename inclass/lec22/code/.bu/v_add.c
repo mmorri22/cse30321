@@ -7,7 +7,7 @@ int main() {
 	// Generate input vectors and destination vector
 	double *x = gen_array(ARRAY_SIZE);
 	double *y = gen_array(ARRAY_SIZE);
-	double *z = (double*) malloc(ARRAY_SIZE*sizeof(double));
+	double *z = (double*) calloc(ARRAY_SIZE, sizeof(double));
 
 	// Test framework that sweeps the number of threads and times each run
 	double start_time, run_time;
@@ -30,7 +30,7 @@ int main() {
 
 	naive_max = run_time;
 
-	printf("Naive: %d threads took %f seconds\n",num_threads,run_time);
+	fprintf(stdout, "Naive: %d threads took %f seconds\n",num_threads,run_time);
 
   	for(int i=1; i<=num_threads; i++) {
 		omp_set_num_threads(i);		
@@ -39,11 +39,11 @@ int main() {
 			v_add_optimized_adjacent(x,y,z);
 		}
 		run_time = omp_get_wtime() - start_time;
-		printf("Optimized adjacent: %d thread(s) took %f seconds\n",i,run_time);
+		fprintf(stdout, "Optimized adjacent: %d thread(s) took %f seconds\n",i,run_time);
 
     	if(!verify(x,y, v_add_optimized_adjacent)){
-     		printf("v_add optimized adjacent does not match reference.\n");
-      		return -1; 
+     		fprintf(stdout, "v_add optimized adjacent does not match reference.\n");
+      		return EXIT_FAILURE; 
     	}
 
     	if (run_time < adj_min) {
@@ -53,7 +53,7 @@ int main() {
   	}
 
   	if (adj_min * 2 > naive_max) {
-  		printf("Fastest adjacent runtime didn't provide at least 2x speedup from naive benchmark.\n");
+  		fprintf(stdout, "Fastest adjacent runtime didn't provide at least 2x speedup from naive benchmark.\n");
   		return -1;
   	}
 
