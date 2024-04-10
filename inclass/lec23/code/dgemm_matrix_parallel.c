@@ -3,21 +3,20 @@
 #include <time.h>
 #include <omp.h>
 
-void dgemm( double** a, double** b, double** c, long unsigned int N, int block_size){
+void dgemm( double** a, double** b, double** c, long unsigned int N ){
 
-    #pragma omp parallel
+    #pragma omp parallel shared(a, b, c, N)
     {
-        int tid = omp_get_thread_num(); 
 
         int iter, jter, kter;
-        for( iter = tid*block_size; iter < (int)N && (tid+1)*block_size - 1; ++iter ){
+		#pragma omp for private(iter, jter, kter) , 32768)
+        for( iter = 0; iter < (int)N; ++iter ){
 
-            for( jter = tid*block_size; jter < (int)N && (tid+1)*block_size - 1; ++jter ){
+            for( jter = 0; jter < (int)N; ++jter ){
 
                 // Register optimization
                 double cij = c[iter][jter];
-
-                for( kter = tid*block_size; kter < (int)N && (tid+1)*block_size - 1; ++kter ){
+                for( kter = 0; kter < (int)N; ++kter ){
                     cij += a[iter][kter] * b[kter][jter];
                 }
 
@@ -57,13 +56,11 @@ int main(const int argc, const char* argv[]){
 
     int max_threads = omp_get_max_threads();
 
-    int block_size = (int)N / max_threads;
-
     clock_t start = clock();
 
     int num_tests = 5;
     for(int kter = 0; kter < num_tests; ++kter){
-        dgemm( a, b, c, N, block_size );
+        dgemm( a, b, c, N );
     }
 
     clock_t stop = clock();

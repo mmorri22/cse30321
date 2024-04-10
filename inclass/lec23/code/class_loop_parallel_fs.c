@@ -38,13 +38,8 @@ int main( const int argc, const char* argv[] ){
 			int w_reg3 = w[3];
 			int w_reg4 = w[4];
 
-            int tid = omp_get_thread_num(); 
-			int start_index = tid * block_size;
-			int end_index = ( (tid+1)*block_size - 1 < array_len ) ? (tid+1)*block_size - 1 : array_len - 1;
-
 			int iter;
-			#pragma omp for private(iter) schedule(static, 32768)
-			for( iter = start_index; iter < end_index; ++iter ){
+			for( iter = 0; iter < array_len; ++iter ){
 				// Unroll loop reduces branch mispredictions
 				int t = x[iter]*w_reg0;   
 				t += x[iter+1]*w_reg1;

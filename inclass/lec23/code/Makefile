@@ -5,10 +5,10 @@
 
 # gcc is for the compiler for C
 CC := gcc
-CFLAGS := -std=c11 -Wall -Wextra -Wconversion
-CFLAGSOMP := -std=c11 -Wall -Wextra -Wconversion -fopenmp
+CFLAGS := -std=c11 -fopenmp
+OMP := -fopenmp
 
-executables := class_loop class_loop_seq hello class_loop_parallel dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel v_add dotp
+executables := class_loop class_loop_seq hello class_loop_parallel dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel class_loop_parallel_fs
 
 # Create the Class Loop Original
 class_loop.o: class_loop.c
@@ -28,18 +28,26 @@ class_loop_seq: class_loop_seq.o
 
 # Create the Hello Library
 hello.o: hello.c
-	$(CC) $(CFLAGSOMP) -c hello.c
+	$(CC) $(CFLAGS) -c hello.c
 
 hello: hello.o
-	$(CC) $(CFLAGSOMP) -o hello hello.o
+	$(CC) $(OMP) -o hello hello.o
+	
+	
+# Create the Class Loop Original
+class_loop_parallel_fs.o: class_loop_parallel_fs.c
+	$(CC) $(CFLAGS) -c class_loop_parallel_fs.c
+
+class_loop_parallel_fs: class_loop_parallel_fs.o
+	$(CC) $(OMP) -o class_loop_parallel_fs class_loop_parallel_fs.o
 
 
 # Create the Class Loop Original
 class_loop_parallel.o: class_loop_parallel.c
-	$(CC) $(CFLAGSOMP) -c class_loop_parallel.c
+	$(CC) $(CFLAGS) -c class_loop_parallel.c
 
 class_loop_parallel: class_loop_parallel.o
-	$(CC) $(CFLAGSOMP) -o class_loop_parallel class_loop_parallel.o
+	$(CC) $(OMP) -o class_loop_parallel class_loop_parallel.o
 
 
 # Test
@@ -67,10 +75,10 @@ dgemm_matrix_reg: dgemm_matrix_reg.o
 
 # Create the DGEMM Matrix Test Parallel
 dgemm_matrix_parallel.o: dgemm_matrix_parallel.c
-	$(CC) $(CFLAGSOMP) -c dgemm_matrix_parallel.c
+	$(CC) $(CFLAGS) -c dgemm_matrix_parallel.c
 
 dgemm_matrix_parallel: dgemm_matrix_parallel.o
-	$(CC) $(CFLAGSOMP) -o dgemm_matrix_parallel dgemm_matrix_parallel.o
+	$(CC) $(OMP) -o dgemm_matrix_parallel dgemm_matrix_parallel.o
 
 # DGEMM Matrix Test
 dgemm_test: dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel
@@ -78,27 +86,6 @@ dgemm_test: dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel
 	./dgemm_matrix_reg 1024
 	./dgemm_matrix_parallel 1024
 
-# Dot Product
-dotp_objs := dotp.o omp_apps.o
-
-dotp.o: dotp.c
-	$(CC) $(CFLAGS) -c dotp.c
-
-omp_apps.o: omp_apps.c
-	$(CC) $(CFLAGS) -c omp_apps.c
-
-dotp: $(dotp_objs)
-	$(CC) $(CFLAGS) -o dotp $(dotp_objs)
-
-
-# Vector Addition
-v_add_objs := v_add.o omp_apps.o
-
-v_add.o: v_add.c
-	$(CC) $(CFLAGS) -c v_add.c
-
-v_add: $(v_add_objs)
-	$(CC) $(CFLAGS) -o v_add $(v_add_objs)
 
 # Make all
 all: $(executables)
