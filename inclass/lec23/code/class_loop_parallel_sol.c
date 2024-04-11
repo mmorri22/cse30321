@@ -24,25 +24,36 @@ int main( const int argc, const char* argv[] ){
 	clock_t start = clock();
 
     for( int loop = 0; loop < num_tests; ++loop ){
+
+		int num_threads = omp_get_max_threads();
+		int block_size = array_len / num_threads;
+
+        #pragma omp parallel shared(x, y, w)
+        {
 			
-        /* Load from cache into registers reduces cache misses */
-        int w_reg0 = w[0];
-        int w_reg1 = w[1];
-        int w_reg2 = w[2];
-        int w_reg3 = w[3];
-        int w_reg4 = w[4];
+			/* Load from cache into registers reduces cache misses */
+			int w_reg0 = w[0];
+			int w_reg1 = w[1];
+			int w_reg2 = w[2];
+			int w_reg3 = w[3];
+			int w_reg4 = w[4];
 
-        int iter;
+            int tid = omp_get_thread_num(); 
+			int start_index = tid * block_size;
+			int end_index = ( (tid+1)*block_size - 1 < array_len ) ? (tid+1)*block_size - 1 : array_len - 1;
 
-        for( iter = 0; iter < array_len; ++iter ){
-            // Unroll loop reduces branch mispredictions
-            int t = x[iter]*w_reg0;   
-            t += x[iter+1]*w_reg1;
-            t += x[iter+2]*w_reg2;
-            t += x[iter+3]*w_reg3;
-            t += x[iter+4]*w_reg4;
-            y[iter] = t;   // Only perform one sw per loop
-            
+			int iter;
+			#pragma omp for private(iter) schedule(static, 32768)
+			for( iter = start_index; iter < end_index; ++iter ){
+				// Unroll loop reduces branch mispredictions
+				int t = x[iter]*w_reg0;   
+				t += x[iter+1]*w_reg1;
+				t += x[iter+2]*w_reg2;
+				t += x[iter+3]*w_reg3;
+				t += x[iter+4]*w_reg4;
+				y[iter] = t;   // Only perform one sw per loop
+				
+			}
         }
     }
 
