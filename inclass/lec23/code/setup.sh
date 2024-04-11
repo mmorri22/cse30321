@@ -1,10 +1,9 @@
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/class_loop.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/class_loop_seq.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/hello.c
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/hello_safe.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/class_loop_parallel.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/class_loop_parallel_fs.c
-wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/dgemm_matrix.c
-wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/dgemm_matrix_reg.c
-wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/dgemm_matrix_parallel.c
+wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/class_loop_parallel_for.c
 wget https://raw.githubusercontent.com/mmorri22/cse30321/main/inclass/lec23/code/Makefile
 rm setup.sh

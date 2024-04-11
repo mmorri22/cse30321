@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 524288
 #define WSIZE 5
 
 int main( const int argc, const char* argv[] ){
@@ -23,6 +22,7 @@ int main( const int argc, const char* argv[] ){
     clock_t start = clock();
 
     for( int loop = 0; loop < num_tests; ++loop ){
+		
         /* Load from cache into registers reduces cache misses */
         int w_reg0 = w[0];
         int w_reg1 = w[1];
@@ -30,7 +30,7 @@ int main( const int argc, const char* argv[] ){
         int w_reg3 = w[3];
         int w_reg4 = w[4];
 
-        for( int i = 0; i < MAX; ++i ){
+        for( int i = 0; i < array_len; ++i ){
             // Unroll loop reduces branch mispredictions
             int t = x[i]*w_reg0;   
             t += x[i+1]*w_reg1;

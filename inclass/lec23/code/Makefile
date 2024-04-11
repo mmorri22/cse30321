@@ -5,10 +5,10 @@
 
 # gcc is for the compiler for C
 CC := gcc
-CFLAGS := -std=c11 -fopenmp
+CFLAGS := -std=c11
 OMP := -fopenmp
 
-executables := class_loop class_loop_seq hello class_loop_parallel dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel class_loop_parallel_fs
+executables := class_loop class_loop_seq hello hello_safe class_loop_parallel class_loop_parallel_fs class_loop_parallel_for
 
 # Create the Class Loop Original
 class_loop.o: class_loop.c
@@ -28,63 +28,50 @@ class_loop_seq: class_loop_seq.o
 
 # Create the Hello Library
 hello.o: hello.c
-	$(CC) $(CFLAGS) -c hello.c
+	$(CC) $(CFLAGS) $(OMP) -c hello.c
 
 hello: hello.o
 	$(CC) $(OMP) -o hello hello.o
 	
 	
-# Create the Class Loop Original
+# Create the Hello with Thread Safety Library
+hello_safe.o: hello_safe.c
+	$(CC) $(CFLAGS) $(OMP) -c hello_safe.c
+
+hello_safe: hello_safe.o
+	$(CC) $(OMP) -o hello_safe hello_safe.o
+	
+	
+# Create the Class Loop Original - False Sharing
 class_loop_parallel_fs.o: class_loop_parallel_fs.c
-	$(CC) $(CFLAGS) -c class_loop_parallel_fs.c
+	$(CC) $(CFLAGS) $(OMP) -c class_loop_parallel_fs.c
 
 class_loop_parallel_fs: class_loop_parallel_fs.o
 	$(CC) $(OMP) -o class_loop_parallel_fs class_loop_parallel_fs.o
 
 
-# Create the Class Loop Original
+# Create the Class Loop with the parallel pragma
 class_loop_parallel.o: class_loop_parallel.c
-	$(CC) $(CFLAGS) -c class_loop_parallel.c
+	$(CC) $(CFLAGS) $(OMP) -c class_loop_parallel.c
 
 class_loop_parallel: class_loop_parallel.o
 	$(CC) $(OMP) -o class_loop_parallel class_loop_parallel.o
+	
+	
+# Create the Class Loop with the parallel and for pragmas
+class_loop_parallel_for.o: class_loop_parallel_for.c
+	$(CC) $(CFLAGS) $(OMP) -c class_loop_parallel_for.c
+
+class_loop_parallel_for: class_loop_parallel_for.o
+	$(CC) $(OMP) -o class_loop_parallel_for class_loop_parallel_for.o
 
 
 # Test
-loop_test: class_loop class_loop_seq class_loop_parallel
+loop_test: class_loop class_loop_seq class_loop_parallel class_loop_parallel_for
 	./class_loop 1048576
 	./class_loop_seq 1048576
 	./class_loop_parallel 1048576
-
-
-# Create the DGEMM Matrix Test
-dgemm_matrix.o: dgemm_matrix.c
-	$(CC) $(CFLAGS) -c dgemm_matrix.c
-
-dgemm_matrix: dgemm_matrix.o
-	$(CC) $(CFLAGS) -o dgemm_matrix dgemm_matrix.o
-
-
-# Create the DGEMM Matrix Test with the Register Optimization
-dgemm_matrix_reg.o: dgemm_matrix_reg.c
-	$(CC) $(CFLAGS) -c dgemm_matrix_reg.c
-
-dgemm_matrix_reg: dgemm_matrix_reg.o
-	$(CC) $(CFLAGS) -o dgemm_matrix_reg dgemm_matrix_reg.o
-
-
-# Create the DGEMM Matrix Test Parallel
-dgemm_matrix_parallel.o: dgemm_matrix_parallel.c
-	$(CC) $(CFLAGS) -c dgemm_matrix_parallel.c
-
-dgemm_matrix_parallel: dgemm_matrix_parallel.o
-	$(CC) $(OMP) -o dgemm_matrix_parallel dgemm_matrix_parallel.o
-
-# DGEMM Matrix Test
-dgemm_test: dgemm_matrix dgemm_matrix_reg dgemm_matrix_parallel
-	./dgemm_matrix 1024
-	./dgemm_matrix_reg 1024
-	./dgemm_matrix_parallel 1024
+	./class_loop_parallel_for 1048576
 
 
 # Make all

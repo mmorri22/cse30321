@@ -26,9 +26,8 @@ int main( const int argc, const char* argv[] ){
     for( int loop = 0; loop < num_tests; ++loop ){
 
 		int num_threads = omp_get_max_threads();
-		int block_size = array_len / num_threads;
 
-        #pragma omp parallel shared(x, y, w, block_size)
+        #pragma omp parallel
         {
 			
 			/* Load from cache into registers reduces cache misses */
