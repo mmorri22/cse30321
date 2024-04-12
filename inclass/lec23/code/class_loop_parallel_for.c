@@ -42,6 +42,8 @@ int main( const int argc, const char* argv[] ){
 			int start_index = tid * block_size;
 			int end_index = ( (tid+1)*block_size - 1 < array_len ) ? (tid+1)*block_size - 1 : array_len - 1;
 
+            fprintf( stdout, "tid = %d, start_index = %d, end_index = %d\n", tid, start_index, end_index );
+
 			int iter;
 			#pragma omp for private(iter) schedule(static, 32768)
 			for( iter = start_index; iter < end_index; ++iter ){

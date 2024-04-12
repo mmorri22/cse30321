@@ -39,6 +39,7 @@ int main( const int argc, const char* argv[] ){
 			int w_reg4 = w[4];
 
             int tid = omp_get_thread_num(); 
+            fprintf( stdout, "%d\n", tid);
 			int start_index = tid * block_size;
 			int end_index = ( (tid+1)*block_size - 1 < array_len ) ? (tid+1)*block_size - 1 : array_len - 1;
 

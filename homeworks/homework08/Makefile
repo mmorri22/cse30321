@@ -6,20 +6,20 @@
 # gcc is for the compiler for C
 CC := gcc
 CFLAGS := -std=c11
-OMP := -fopenmp
+OMP := -fopenmp -std=c11
 
 executables := dgemm_matrix dgemm_matrix_parallel
 
 # Create the Class Loop Original
 dgemm_matrix.o: dgemm_matrix.c
-	$(CC) $(CFLAGS) -c dgemm_matrix.c
+	$(CC) $(OMP) -c dgemm_matrix.c
 
 dgemm_matrix: dgemm_matrix.o
 	$(CC) $(OMP) -o dgemm_matrix dgemm_matrix.o
 
 # Test
 test: dgemm_matrix
-	./dgemm_matrix 1024
+	./dgemm_matrix 512
 	make clean
 
 # Make all
