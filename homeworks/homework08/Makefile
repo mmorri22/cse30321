@@ -8,7 +8,7 @@ CC := gcc
 CFLAGS := -std=c11
 OMP := -fopenmp -std=c11
 
-executables := dgemm_matrix dgemm_matrix_parallel
+executables := dgemm_matrix
 
 # Create the Class Loop Original
 dgemm_matrix.o: dgemm_matrix.c

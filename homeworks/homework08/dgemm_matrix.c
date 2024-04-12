@@ -4,7 +4,7 @@
 #include <omp.h>
 
 /****************************************************
- * For Homework 08 - Part 1
+ * For Homework 08 - Part 3.1
  * Modify using only register, array, or loop changes only
  * Do not implement any OpenMP methods in this loop
  ***************************************************/
@@ -24,9 +24,9 @@ void dgemm_seq( double** a, double** b, double** c, int N ){
 }
 
 /****************************************************
- * For Homework 08 - Part 3
- * Modify using only register or loop changes only
- * Do not implement any OpenMP methods in this loop
+ * For Homework 08 - Part 3.2
+ * Use the OpenMP pragmas, but do not implement blocking
+ * Make sure you change the first line of the main as indicated in the assignment
  ***************************************************/
 void dgemm_parallel_no_blocking( double** a, double** b, double** c, int N, int num_threads ){
 
@@ -44,6 +44,11 @@ void dgemm_parallel_no_blocking( double** a, double** b, double** c, int N, int 
 	}
 }
 
+/****************************************************
+ * For Homework 08 - Part 3.3
+ * Use the OpenMP pragmas, as well as blocking
+ * Make sure you change the first line of the main as indicated in the assignment
+ ***************************************************/
 void dgemm_parallel_blocking( double** a, double** b, double** c, int N, int num_threads ){
 
 	int iter, jter, kter;
@@ -77,6 +82,16 @@ void dgemm_no_improvement( double** a, double** b, double** c, int N ){
 
 int main(const int argc, const char* argv[]){
 
+	/**********************************************************************/
+	/*************************** 3.2 Modify Here ******************************/
+	/* Change this line to get the maximum number of threads using OpenMP */
+	/**********************************************************************/
+    int num_threads = 1;
+
+	/**********************************************************************/
+	/***************** Do not modify below this line **********************/
+	/**********************************************************************/
+
     srand( (unsigned int)time(0) );
 
     if(argc != 2){
@@ -84,15 +99,6 @@ int main(const int argc, const char* argv[]){
         return EXIT_FAILURE;
 	}
 	
-	/**********************************************************************/
-	/*************************** Modify Here ******************************/
-	/* Change this line to get the maximum number of threads using OpenMP */
-	/**********************************************************************/
-    int num_threads = omp_get_max_threads();
-
-	/**********************************************************************/
-	/***************** Do not modify below this line **********************/
-	/**********************************************************************/
     long unsigned int N = (long unsigned int)atoi(argv[1]);
 
     double** a = (double**)calloc(N, sizeof(double*) );
@@ -171,32 +177,7 @@ int main(const int argc, const char* argv[]){
     }
 
 	/****** Presentations of Final Test Results **********/
-
-    fprintf( stdout, "--------------------------------\n");
-	fprintf( stdout, "No Improvement Test\n" );
-	fprintf( stdout, "Clocks for all tests   : %.3lf\n", no_improvement_total);
-	fprintf( stdout, "Average clocks per test: %.3lf\n", no_improvement_total / (double)num_tests );    
-    fprintf( stdout, "--------------------------------\n");
-	
-    fprintf( stdout, "--------------------------------\n");
-	fprintf( stdout, "Sequential DGEMM Test\n" );
-	fprintf( stdout, "Clocks for all tests   : %.3lf\n", improvement_seq_total);
-	fprintf( stdout, "Average clocks per test: %.3lf\n", improvement_seq_total / (double)num_tests );    
-    fprintf( stdout, "--------------------------------\n");
-
-	fprintf( stdout, "Parallel DGEMM - No Blocking - Test\n" );
-    fprintf( stdout, "Number of Threads: %d\n", num_threads);
-	fprintf( stdout, "Clocks for all tests   : %.3lf\n", (improvement_parallel_no_blocking_total) / (double)(num_threads) );
-    fprintf( stdout, "Average clocks per test: %.3lf\n", improvement_parallel_no_blocking_total / (double)(num_tests * num_threads));
-	
-    fprintf( stdout, "--------------------------------\n");
-	fprintf( stdout, "Parallel DGEMM - Blocking - Test\n" );
-    fprintf( stdout, "Number of Threads: %d\n", num_threads);
-	fprintf( stdout, "Clocks for all tests   : %.3lf\n", (improvement_parallel_blocking_total) / (double)(num_threads) );
-    fprintf( stdout, "Average clocks per test: %.3lf\n", improvement_parallel_blocking_total / (double)(num_tests * num_threads));
-	
-    fprintf( stdout, "--------------------------------\n");
-	fprintf( stdout, "Comparisons: \n" );
+	fprintf( stdout, "\nComparisons: \n" );
 	
 	int num_passes = 0;
 	if( 1.5 * improvement_seq_total / (double)num_tests < no_improvement_total / (double)num_tests ){
