@@ -105,12 +105,12 @@ Note in the grade breakdown below that the point total for the Exams escalates d
 
 |Category|Num. Assignments|Points Per Assignment|Total Points|Percent|
 |:---|:---|:---|:---|:---|
-|Homeworks|12|500|6,000|40%|
-|Readings|15|100|1,500|10%|
-|Exam 1|1|2,000|2,000|13.33%|
-|Exam 2|1|2,500|2,500|16.67%|
-|Final Exam|1|3,000|3,000|20%|
-|<b>Total</b>|  |  |<b>15,000</b>|<b>100%</b>|
+|Homeworks|11|1,000|11,000|55%|
+|Readings|13|100|1,300|6.5%|
+|Exam 1|1|2,000|2,000|10%|
+|Exam 2|1|2,500|2,500|12.5%|
+|Final Exam|1|3,200|3,200|16%|
+|<b>Total</b>|  |  |<b>20,000</b>|<b>100%</b>|
 
 ### Assignment Grade Breakdown
 
