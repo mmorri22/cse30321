@@ -109,7 +109,7 @@ Note in the grade breakdown below that the point total for the Exams escalates d
 |Readings|13|100|1,300|6.5%|
 |Exam 1|1|2,000|2,000|10%|
 |Exam 2|1|2,500|2,500|12.5%|
-|Final Exam|1|3,600|3,200|16%|
+|Final Exam|1|3,200|3,200|16%|
 |<b>Total</b>|  |  |<b>20,000</b>|<b>100%</b>|
 
 ### Assignment Grade Breakdown
