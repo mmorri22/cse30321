@@ -27,6 +27,7 @@ os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/')
 os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/cells')
 os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/tech')
 os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/timing')
+os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/')
 
 os.system('mkdir com_google_skywater_pdk_sky130_fd_sc_hd/cells/a2111o')
 os.system('cp sky130/sky130_fd_sc_hd__a2111o_1.lef com_google_skywater_pdk_sky130_fd_sc_hd/cells/a2111o/sky130_fd_sc_hd__a2111o_1.lef')
@@ -707,8 +708,10 @@ os.system('cp sky130/sky130_fd_sc_hd__xor3_4.lef com_google_skywater_pdk_sky130_
 os.system('cp sky130/sky130_fd_sc_hd.tlef com_google_skywater_pdk_sky130_fd_sc_hd/tech/sky130_fd_sc_hd.tlef')
 os.system('cp sky130/sky130_fd_sc_hd__ff_100C_1v95.lib com_google_skywater_pdk_sky130_fd_sc_hd/timing/sky130_fd_sc_hd__ff_100C_1v95.lib')
 
-os.system('mkdir sky130/dependency_support')
-os.system('mkdir sky130/dependency_support/com_google_skywater_pdk')
-os.system('mkdir sky130/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/')
-os.system('cp sky130/tracks.tcl sky130/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/tracks.tcl')
-os.system('cp sky130/pdn_config.pdn sky130/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/pdn_config.pdn')
+# Dependency Support
+os.system('mkdir -p com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/')
+os.system('mkdir com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support')
+os.system('mkdir com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk')
+os.system('mkdir com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/')
+os.system('cp sky130/tracks.tcl com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/tracks.tcl')
+os.system('cp sky130/pdn_config.pdn com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/pdn_config.pdn')
