@@ -437,7 +437,7 @@ cell_lef_paths: "../com_google_skywater_pdk_sky130_fd_sc_hd/cells/xor3/sky130_fd
 cell_lef_paths: "../com_google_skywater_pdk_sky130_fd_sc_hd/cells/xor3/sky130_fd_sc_hd__xor3_4.lef"
 tech_lef_path: "../com_google_skywater_pdk_sky130_fd_sc_hd/tech/sky130_fd_sc_hd.tlef"
 liberty_path: "../com_google_skywater_pdk_sky130_fd_sc_hd/timing/sky130_fd_sc_hd__ff_100C_1v95.lib"
-tracks_file_path: "dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/tracks.tcl"
+tracks_file_path: "../com_google_skywater_pdk_sky130_fd_sc_hd/dependency_support/com_google_skywater_pdk/sky130_fd_sc_hd/tracks.tcl"
 pin_horizontal_metal_layer: "met3"
 pin_vertical_metal_layer: "met2"
 tap_cell: "sky130_fd_sc_hd__tapvpwrvgnd_1"
